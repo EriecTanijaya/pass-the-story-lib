@@ -1,124 +1,280 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  Zap,
-  Server,
-  Route as RouteIcon,
-  Shield,
-  Waves,
-  Sparkles,
-} from "lucide-react";
 import { useState } from "react";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ListIcon, TagIcon, TranslateIcon, XIcon } from "@phosphor-icons/react";
+import { Badge } from "@/components/ui/badge";
+import { useIsMobile } from "@/hooks/use-mobile";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 
 export const Route = createFileRoute("/")({ component: App });
 
 function App() {
-  return (
-    <>
-      <ResponsiveNavbar />
-      <main>wassup homie</main>    </>
-  );
-}
-
-const ResponsiveNavbar = () => {
+  const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
 
-  // Example navigation links
-  const navLinks = [
-    { name: "Home", href: "#" },
-    { name: "About", href: "#" },
-    { name: "Services", href: "#" },
-    { name: "Contact", href: "#" },
-  ];
-
   return (
-    <div className="bg-gray-800 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
-            <span className="font-bold text-xl">Your Logo</span>
+    <>
+      <header className="bg-white">
+        <NavigationMenu
+          viewport={isMobile}
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 justify-between h-16"
+        >
+          <div className="shrink-0 flex items-center">
+            <span className="font-bold text-xl">Pass The Story Library</span>
           </div>
 
-          {/* Desktop Menu - Hidden on small screens */}
-          <div className="hidden md:flex md:items-center md:space-x-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-gray-300 hover:text-white transition-colors duration-200"
+          <NavigationMenuList className="hidden md:flex">
+            <NavigationMenuItem>
+              <NavigationMenuLink
+                className={`${navigationMenuTriggerStyle()} bg-secondary text-foreground`}
               >
-                {link.name}
-              </a>
-            ))}
-          </div>
+                <a href="#">Home</a>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem className="">
+              <NavigationMenuLink
+                className={`${navigationMenuTriggerStyle()} bg-white`}
+              >
+                <a href="#">Books</a>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink
+                className={`${navigationMenuTriggerStyle()} bg-white`}
+              >
+                <a href="#">Meetups</a>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
 
-          {/* Mobile menu button - Hidden on medium and larger screens */}
-          <div className="md:hidden flex items-center">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-              aria-controls="mobile-menu"
-              aria-expanded="false"
-            >
-              <span className="sr-only">Open main menu</span>
-              {/* Hamburger icon when closed */}
+            <NavigationMenuItem>
+              <NavigationMenuLink
+                className={`${navigationMenuTriggerStyle()} bg-white`}
+              >
+                <a href="#">About</a>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+
+          <div className="md:hidden flex">
+            <button type="button" onClick={() => setIsOpen(!isOpen)}>
               {!isOpen ? (
-                <svg
-                  className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <title>hamburger icon</title>
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
+                <ListIcon className="size-6" />
               ) : (
-                <svg
-                  className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <title>menu icon</title>
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
+                <XIcon className="size-6" />
               )}
             </button>
           </div>
-        </div>
-      </div>
 
-      {/* Mobile Menu Panel - Hidden on medium and larger screens, shown based on isOpen state */}
-      <div
-        className={`md:hidden ${isOpen ? "block" : "hidden"}`}
-        id="mobile-menu"
-      >
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-900">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
-              onClick={() => setIsOpen(false)} // Optional: close menu after clicking a link
-            >
-              {link.name}
-            </a>
-          ))}
+          <Button variant="ghost" className="hidden md:visible">
+            Sign in
+          </Button>
+        </NavigationMenu>
+
+        <div
+          className={`md:hidden ${isOpen ? "block" : "hidden"} px-5 space-y-1 py-3 flex flex-col border-t-1 border-t-secondary`}
+        >
+          <Button
+            variant="secondary"
+            className="bg-secondary text-foreground"
+            asChild
+          >
+            <a href="#">Home</a>
+          </Button>
+          <Button variant="ghost" asChild>
+            <a href="#">Books</a>
+          </Button>
+          <Button variant="ghost" asChild>
+            <a href="#">Meetups</a>
+          </Button>
+          <Button variant="ghost" asChild>
+            <a href="#">About</a>
+          </Button>
         </div>
-      </div>
-    </div>
+      </header>
+
+      <main className="max-w-7xl mx-auto">
+        <h2 className="text-xl font-bold ml-4 my-4">Featured Books</h2>
+        <div className="flex justify-between overflow-auto gap-3">
+          <Card className="flex flex-col bg-white pt-0 w-full md:w-[280px] first:ml-4 last:mr-4">
+            <CardHeader className="p-0 relative">
+              <img
+                src="/landscape.jpg"
+                alt="book"
+                className="w-full h-48 object-cover rounded-t-lg"
+              />
+            </CardHeader>
+            <CardContent className="flex flex-col gap-2">
+              <CardTitle>The Dusk Library</CardTitle>
+              <CardDescription>Jeff Heferson</CardDescription>
+
+              <div className="flex gap-2 text-xs text-muted-foreground">
+                <span className="flex gap-1 items-center">
+                  <TagIcon className="h-3 w-3 fill-gray-800" />
+                  Fiction
+                </span>
+                <span className="flex gap-1 items-center">
+                  <TranslateIcon className="h-3 w-3 fill-gray-800" />
+                  English
+                </span>
+                <span className="flex gap-1 items-center">
+                  <TranslateIcon className="h-3 w-3 fill-gray-800" />
+                  English
+                </span>
+              </div>
+
+              <div className="flex gap-2">
+                <Badge variant="secondary">wowzer</Badge>
+                <Badge variant="secondary">heart breaking</Badge>
+              </div>
+            </CardContent>
+            <CardFooter className="gap-4">
+              <Button className="flex-1">Reserve</Button>
+
+              <Button variant="outline" className="flex-1">
+                View Details
+              </Button>
+            </CardFooter>
+          </Card>
+
+          <Card className="flex flex-col bg-white pt-0 w-full md:w-[280px]">
+            <CardHeader className="p-0 relative">
+              <img
+                src="/landscape.jpg"
+                alt="book"
+                className="w-full h-48 object-cover rounded-t-lg"
+              />
+            </CardHeader>
+            <CardContent className="flex flex-col gap-2">
+              <CardTitle>The Dusk Library</CardTitle>
+              <CardDescription>Jeff Heferson</CardDescription>
+
+              <div className="flex gap-2 text-xs text-muted-foreground">
+                <span className="flex gap-1 items-center">
+                  <TagIcon className="h-3 w-3 fill-gray-800" />
+                  Fiction
+                </span>
+                <span className="flex gap-1 items-center">
+                  <TranslateIcon className="h-3 w-3 fill-gray-800" />
+                  English
+                </span>
+                <span className="flex gap-1 items-center">
+                  <TranslateIcon className="h-3 w-3 fill-gray-800" />
+                  English
+                </span>
+              </div>
+
+              <div className="flex gap-2">
+                <Badge variant="secondary">wowzer</Badge>
+                <Badge variant="secondary">heart breaking</Badge>
+              </div>
+            </CardContent>
+            <CardFooter className="gap-4">
+              <Button className="flex-1">Reserve</Button>
+
+              <Button variant="outline" className="flex-1">
+                View Details
+              </Button>
+            </CardFooter>
+          </Card>
+
+          <Card className="flex flex-col bg-white pt-0 w-full md:w-[280px]">
+            <CardHeader className="p-0 relative">
+              <img
+                src="/landscape.jpg"
+                alt="book"
+                className="w-full h-48 object-cover rounded-t-lg"
+              />
+            </CardHeader>
+            <CardContent className="flex flex-col gap-2">
+              <CardTitle>The Dusk Library</CardTitle>
+              <CardDescription>Jeff Heferson</CardDescription>
+
+              <div className="flex gap-2 text-xs text-muted-foreground">
+                <span className="flex gap-1 items-center">
+                  <TagIcon className="h-3 w-3 fill-gray-800" />
+                  Fiction
+                </span>
+                <span className="flex gap-1 items-center">
+                  <TranslateIcon className="h-3 w-3 fill-gray-800" />
+                  English
+                </span>
+                <span className="flex gap-1 items-center">
+                  <TranslateIcon className="h-3 w-3 fill-gray-800" />
+                  English
+                </span>
+              </div>
+
+              <div className="flex gap-2">
+                <Badge variant="secondary">wowzer</Badge>
+                <Badge variant="secondary">heart breaking</Badge>
+              </div>
+            </CardContent>
+            <CardFooter className="gap-4">
+              <Button className="flex-1">Reserve</Button>
+
+              <Button variant="outline" className="flex-1">
+                View Details
+              </Button>
+            </CardFooter>
+          </Card>
+
+          <Card className="flex flex-col bg-white pt-0 w-full md:w-[280px] last:mr-4">
+            <CardHeader className="p-0 relative">
+              <img
+                src="/landscape.jpg"
+                alt="book"
+                className="w-full h-48 object-cover rounded-t-lg"
+              />
+            </CardHeader>
+            <CardContent className="flex flex-col gap-2">
+              <CardTitle>The Dusk Library</CardTitle>
+              <CardDescription>Jeff Heferson</CardDescription>
+
+              <div className="flex gap-2 text-xs text-muted-foreground">
+                <span className="flex gap-1 items-center">
+                  <TagIcon className="h-3 w-3 fill-gray-800" />
+                  Fiction
+                </span>
+                <span className="flex gap-1 items-center">
+                  <TranslateIcon className="h-3 w-3 fill-gray-800" />
+                  English
+                </span>
+                <span className="flex gap-1 items-center">
+                  <TranslateIcon className="h-3 w-3 fill-gray-800" />
+                  English
+                </span>
+              </div>
+
+              <div className="flex gap-2">
+                <Badge variant="secondary">wowzer</Badge>
+                <Badge variant="secondary">heart breaking</Badge>
+              </div>
+            </CardContent>
+            <CardFooter className="gap-4">
+              <Button className="flex-1">Reserve</Button>
+
+              <Button variant="outline" className="flex-1">
+                View Details
+              </Button>
+            </CardFooter>
+          </Card>
+        </div>
+      </main>
+    </>
   );
-};
+}
