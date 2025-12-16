@@ -1,4 +1,5 @@
 import {
+	EnvelopeIcon,
 	ListIcon,
 	MagnifyingGlassIcon,
 	SparkleIcon,
@@ -327,15 +328,17 @@ function App() {
 								</CardDescription>
 							</CardHeader>
 						</Card>
-						<Card>
+
+						<Card className="relative">
+							<Badge className="absolute -top-3 -left-3 size-8">2</Badge>
 							<CardHeader>
 								<div className="size-14 flex items-center justify-center bg-background rounded-xl mb-4">
-									<MagnifyingGlassIcon className="size-7 fill-primary" />
+									<EnvelopeIcon className="size-7 fill-primary" />
 								</div>
-								<CardTitle>Browse & Reserve</CardTitle>
+								<CardTitle>Get Confirmation</CardTitle>
 								<CardDescription>
-									Find a book you love and reserve it up to 2 days before the
-									meetup.
+									Receive an message through email or whatsapp with meetup
+									details once your reservation is confirmed
 								</CardDescription>
 							</CardHeader>
 						</Card>
