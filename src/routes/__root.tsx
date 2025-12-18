@@ -1,7 +1,7 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-
+import { NavigationBar } from "@/shared/components/navigationBar";
 import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
@@ -15,7 +15,7 @@ export const Route = createRootRoute({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "TanStack Start Starter",
+				title: "Pass The Story Library",
 			},
 		],
 		links: [
@@ -36,6 +36,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				<HeadContent />
 			</head>
 			<body>
+				<NavigationBar />
 				{children}
 				<TanStackDevtools
 					config={{
