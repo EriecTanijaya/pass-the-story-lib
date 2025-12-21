@@ -28,20 +28,23 @@ export function NavigationBar() {
 					<NavigationMenuItem>
 						<NavigationMenuLink
 							className={`${navigationMenuTriggerStyle()} bg-secondary text-foreground`}
+							asChild
 						>
-							<a href="#">Home</a>
-						</NavigationMenuLink>
-					</NavigationMenuItem>
-					<NavigationMenuItem className="">
-						<NavigationMenuLink
-							className={`${navigationMenuTriggerStyle()} bg-white`}
-						>
-							<a href="#">Books</a>
+							<a href="/">Home</a>
 						</NavigationMenuLink>
 					</NavigationMenuItem>
 					<NavigationMenuItem>
 						<NavigationMenuLink
 							className={`${navigationMenuTriggerStyle()} bg-white`}
+							asChild
+						>
+							<a href="/books">Books</a>
+						</NavigationMenuLink>
+					</NavigationMenuItem>
+					<NavigationMenuItem>
+						<NavigationMenuLink
+							className={`${navigationMenuTriggerStyle()} bg-white`}
+							asChild
 						>
 							<a href="#">Meetups</a>
 						</NavigationMenuLink>
@@ -50,6 +53,7 @@ export function NavigationBar() {
 					<NavigationMenuItem>
 						<NavigationMenuLink
 							className={`${navigationMenuTriggerStyle()} bg-white`}
+							asChild
 						>
 							<a href="#">About</a>
 						</NavigationMenuLink>
@@ -79,10 +83,10 @@ export function NavigationBar() {
 					className="bg-secondary text-foreground"
 					asChild
 				>
-					<a href="#">Home</a>
+					<a href="/">Home</a>
 				</Button>
 				<Button variant="ghost" asChild>
-					<a href="#">Books</a>
+					<a href="/books">Books</a>
 				</Button>
 				<Button variant="ghost" asChild>
 					<a href="#">Meetups</a>
