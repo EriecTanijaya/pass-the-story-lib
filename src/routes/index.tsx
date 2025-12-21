@@ -1,4 +1,5 @@
 import {
+  BellIcon,
   BookOpenIcon,
   CalendarIcon,
   ClockIcon,
@@ -16,6 +17,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/shared/components/ui/card";
@@ -132,10 +134,23 @@ function App() {
                   </p>
                 </div>
               </div>
-              
-              <h3>Reservation deadline</h3>
+
+              <div className="flex gap-1">
+                <BellIcon className="size-5 fill-primary" />
+                <h3 className="text-muted-foreground text-sm">
+                  Reservation deadline:
+                  <span className="font-semibold text-foreground">
+                    {" "}
+                    19 December 2025
+                  </span>
+                </h3>
+              </div>
             </div>
           </CardContent>
+          <CardFooter className="gap-4">
+            <Button>Reserve</Button>
+            <Button variant="outline">View</Button>
+          </CardFooter>
         </Card>
       </section>
     </main>
