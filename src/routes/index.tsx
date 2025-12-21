@@ -98,7 +98,7 @@ function App() {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 gap-5">
-              <div>
+              <div className="flex flex-col gap-2">
                 <div className="flex gap-2 items-center">
                   <div className="flex justify-center items-center rounded-lg size-8 bg-background">
                     <CalendarIcon className="size-5 fill-primary" />
@@ -132,6 +132,8 @@ function App() {
                   </p>
                 </div>
               </div>
+              
+              <h3>Reservation deadline</h3>
             </div>
           </CardContent>
         </Card>
