@@ -1,4 +1,5 @@
 import { ListIcon, XIcon } from "@phosphor-icons/react";
+import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useIsMobile } from "../hooks/use-mobile";
 import { Button } from "./ui/button";
@@ -12,15 +13,13 @@ import {
 
 type NavMenu = {
   name: string;
-  link: `/${string}`;
+  link: string;
 };
 
 export function NavigationBar() {
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
-  const currentPathName = window.location.pathname;
-  // const isActive = currentPathName ===
-  //
+
   const navMenus: NavMenu[] = [
     {
       name: "Home",
@@ -32,11 +31,11 @@ export function NavigationBar() {
     },
     {
       name: "Meetups",
-      link: "/meetups",
+      link: "/",
     },
     {
       name: "About",
-      link: "/about",
+      link: "/",
     },
   ];
 
@@ -105,32 +104,19 @@ export function NavigationBar() {
         className={`md:hidden ${isOpen ? "block" : "hidden"} px-5 space-y-1 py-3 flex flex-col border-t border-t-secondary`}
       >
         {navMenus.map((nav) => (
-          <Button
-            key={nav.name}
-            variant={currentPathName === nav.link ? "secondary" : "ghost"}
-            className="bg-secondary text-foreground"
-            asChild
-          >
-            <a href={nav.link}>{nav.name}</a>
-          </Button>
+          <Link key={nav.name} to={nav.link}>
+            {({ isActive }) => {
+              return (
+                <Button
+                  variant={isActive ? "secondary" : "ghost"}
+                  className="w-full"
+                >
+                  {nav.name}
+                </Button>
+              );
+            }}
+          </Link>
         ))}
-
-        <Button
-          variant="secondary"
-          className="bg-secondary text-foreground"
-          asChild
-        >
-          <a href="/">Home</a>
-        </Button>
-        <Button variant="ghost" asChild>
-          <a href="/books">Books</a>
-        </Button>
-        <Button variant="ghost" asChild>
-          <a href="#">Meetups</a>
-        </Button>
-        <Button variant="ghost" asChild>
-          <a href="#">About</a>
-        </Button>
       </div>
     </header>
   );
