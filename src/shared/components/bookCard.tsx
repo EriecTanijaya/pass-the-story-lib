@@ -1,80 +1,105 @@
-import { TagIcon, TranslateIcon } from "@phosphor-icons/react";
+import { BookOpenIcon, TagIcon, TranslateIcon } from "@phosphor-icons/react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
 } from "./ui/card";
+import { cva, VariantProps } from "class-variance-authority";
+import { cn } from "../lib/utils";
 
-interface BookCardProps {
-	thumbnailUrl: string;
-	bookName: string;
-	authorName: string;
-	genre: string;
-	language: string;
-	tags?: string[];
-}
+const bookCardVariants = cva(
+  "flex flex-col bg-white pt-0 w-full md:w-[280px]",
+  {
+    variants: {
+      variant: {
+        default: "",
+        carousel: "first:ml-7 last:mr-7",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  },
+);
+
+type BookCardProps = {
+  bookName: string;
+  authorName: string;
+  genre: string;
+  language: string;
+  thumbnailUrl?: string;
+  tags?: string[];
+  variant?: string;
+} & VariantProps<typeof bookCardVariants>;
 
 export function BookCard({
-	authorName,
-	bookName,
-	genre,
-	language,
-	tags,
-	thumbnailUrl,
+  authorName,
+  bookName,
+  genre,
+  language,
+  tags,
+  thumbnailUrl,
+  variant = "default",
 }: BookCardProps) {
-	return (
-		<Card className="flex flex-col bg-white pt-0 w-full md:w-[280px] first:ml-7 last:mr-7">
-			<CardHeader className="p-0 relative">
-				<img
-					src={thumbnailUrl}
-					alt="book"
-					className="w-full h-48 object-cover rounded-t-lg"
-				/>
-			</CardHeader>
-			<CardContent className="flex flex-col gap-2">
-				<CardTitle>{bookName}</CardTitle>
-				<CardDescription>{authorName}</CardDescription>
+  return (
+    <Card className={cn(bookCardVariants({ variant }))}>
+      <CardHeader className="p-0 relative">
+        {thumbnailUrl ? (
+          <img
+            src={thumbnailUrl}
+            alt="book"
+            className="w-full h-48 object-cover rounded-t-lg"
+          />
+        ) : (
+          <div className="h-48 flex items-center justify-center p-12 bg-book-card-thumbnail rounded-t-lg">
+            <BookOpenIcon className="size-20 fill-primary" />
+          </div>
+        )}
+      </CardHeader>
+      <CardContent className="flex flex-col gap-2">
+        <CardTitle>{bookName}</CardTitle>
+        <CardDescription>{authorName}</CardDescription>
 
-				<div className="flex gap-2 text-xs text-muted-foreground">
-					<span className="flex gap-1 items-center">
-						<TagIcon className="h-3 w-3 fill-gray-800" />
-						{genre}
-					</span>
-					<span className="flex gap-1 items-center">
-						<TranslateIcon className="h-3 w-3 fill-gray-800" />
-						{language}
-					</span>
-				</div>
+        <div className="flex gap-2 text-xs text-muted-foreground">
+          <span className="flex gap-1 items-center">
+            <TagIcon className="h-3 w-3 fill-gray-800" />
+            {genre}
+          </span>
+          <span className="flex gap-1 items-center">
+            <TranslateIcon className="h-3 w-3 fill-gray-800" />
+            {language}
+          </span>
+        </div>
 
-				{(() => {
-					if (!tags || tags.length === 0) {
-						return;
-					}
+        {(() => {
+          if (!tags || tags.length === 0) {
+            return;
+          }
 
-					return (
-						<div className="flex gap-2">
-							{tags.map((tag) => (
-								<Badge key={tag} variant="secondary">
-									{tag}
-								</Badge>
-							))}
-						</div>
-					);
-				})()}
-			</CardContent>
+          return (
+            <div className="flex gap-2">
+              {tags.map((tag) => (
+                <Badge key={tag} variant="secondary">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          );
+        })()}
+      </CardContent>
 
-			<CardFooter className="gap-4">
-				<Button className="flex-1">Reserve</Button>
+      <CardFooter className="gap-4">
+        <Button className="flex-1">Reserve</Button>
 
-				<Button variant="outline" className="flex-1">
-					View Details
-				</Button>
-			</CardFooter>
-		</Card>
-	);
+        <Button variant="outline" className="flex-1">
+          View Details
+        </Button>
+      </CardFooter>
+    </Card>
+  );
 }

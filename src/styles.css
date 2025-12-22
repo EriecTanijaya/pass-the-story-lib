@@ -52,6 +52,7 @@ code {
   --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
   --sidebar-border: oklch(0.92 0.004 286.32);
   --sidebar-ring: oklch(0.871 0.006 286.286);
+  --book-card-thumbnail: oklch(0.9019 0.0215 51.5);
 }
 
 .dark {
@@ -87,6 +88,7 @@ code {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.274 0.006 286.033);
   --sidebar-ring: oklch(0.442 0.017 285.786);
+  --book-card-thumbnail: oklch(0.9019 0.0215 51.5);
 }
 
 @theme inline {
@@ -126,6 +128,7 @@ code {
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-book-card-thumbnail: var(--book-card-thumbnail);
 }
 
 @layer base {
