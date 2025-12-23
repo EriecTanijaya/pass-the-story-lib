@@ -26,7 +26,7 @@ import {
 	SelectValue,
 } from "@/shared/components/ui/select";
 
-export const Route = createFileRoute("/books")({
+export const Route = createFileRoute("/books/")({
 	component: RouteComponent,
 });
 
