@@ -30,10 +30,6 @@ export function NavigationBar() {
 			link: "/books",
 		},
 		{
-			name: "Meetups",
-			link: "/",
-		},
-		{
 			name: "About",
 			link: "/",
 		},

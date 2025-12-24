@@ -9,7 +9,7 @@ import {
 	SparkleIcon,
 	UsersIcon,
 } from "@phosphor-icons/react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { BookCard } from "@/shared/components/bookCard";
 import { Badge } from "@/shared/components/ui/badge";
 import { Button } from "@/shared/components/ui/button";
@@ -148,7 +148,9 @@ function App() {
 						</div>
 					</CardContent>
 					<CardFooter className="gap-4">
-						<Button>Reserve</Button>
+						<Button>
+							<Link to="/books">Reserve</Link>
+						</Button>
 						<Button variant="outline">View</Button>
 					</CardFooter>
 				</Card>

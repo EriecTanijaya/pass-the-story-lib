@@ -16,6 +16,7 @@ import {
 	CardContent,
 	CardFooter,
 	CardHeader,
+	CardTitle,
 } from "@/shared/components/ui/card";
 import { Separator } from "@/shared/components/ui/separator";
 
@@ -95,7 +96,7 @@ function RouteComponent() {
 
 			<Card className="bg-background">
 				<CardHeader>
-					<h2 className="font-bold">Next Meetup</h2>
+					<CardTitle className="font-bold">Next Meetup</CardTitle>
 				</CardHeader>
 
 				<CardContent className="flex flex-col gap-3">
