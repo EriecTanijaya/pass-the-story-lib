@@ -1,4 +1,5 @@
 import { BookOpenIcon, TagIcon, TranslateIcon } from "@phosphor-icons/react";
+import { Link } from "@tanstack/react-router";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 import { Badge } from "./ui/badge";
@@ -96,8 +97,8 @@ export function BookCard({
 			<CardFooter className="gap-4">
 				<Button className="flex-1">Reserve</Button>
 
-				<Button variant="outline" className="flex-1">
-					View Details
+				<Button variant="outline" className="flex-1" asChild>
+					<Link to="/books/1">View Details</Link>
 				</Button>
 			</CardFooter>
 		</Card>
