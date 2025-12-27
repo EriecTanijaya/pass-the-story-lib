@@ -81,11 +81,11 @@ const howToSteps: Omit<HowToCardProps, "stepNum">[] = [
 
 function App() {
 	return (
-		<main className="flex flex-col max-w-7xl gap-6">
+		<main className="flex flex-col gap-6 max-w-7xl mx-auto">
 			<Hero />
 
 			<section>
-				<h2 className="text-xl font-bold ml-7 mb-9">Featured Books</h2>
+				<h2 className="text-xl font-bold ml-7 mb-9 xl:ml-0">Featured Books</h2>
 				<div className="flex overflow-auto gap-3">
 					{books.map((book) => (
 						<BookCard key={book.bookName} {...book} variant="carousel" />
@@ -93,7 +93,7 @@ function App() {
 				</div>
 			</section>
 
-			<section className="px-7">
+			<section className="px-7 xl:px-0">
 				<h2 className="text-xl font-bold mb-9">How It Works</h2>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-7">
 					{howToSteps.map((step, idx) => (
@@ -102,7 +102,7 @@ function App() {
 				</div>
 			</section>
 
-			<section className="px-7 pb-12">
+			<section className="px-7 pb-12 xl:px-0">
 				<h2 className="text-xl font-bold mb-9">Upcoming Meetup</h2>
 
 				<Card className="md:w-96">

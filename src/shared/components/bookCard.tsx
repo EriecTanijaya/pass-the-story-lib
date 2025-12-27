@@ -17,7 +17,7 @@ const bookCardVariants = cva("flex flex-col bg-white pt-0 w-full", {
 	variants: {
 		variant: {
 			default: "",
-			carousel: "first:ml-7 last:mr-7",
+			carousel: "first:ml-7 last:mr-7 xl:first:ml-0 xl:last:mr-0",
 		},
 	},
 	defaultVariants: {

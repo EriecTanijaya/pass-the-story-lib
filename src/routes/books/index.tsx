@@ -70,8 +70,8 @@ function RouteComponent() {
 		filters.language !== "all";
 
 	return (
-		<main className="flex flex-col max-w-7xl pt-7">
-			<div className="px-7 pb-7">
+		<main className="flex flex-col max-w-7xl pt-7 mx-auto">
+			<div className="px-7 pb-7 xl:px-0">
 				<h2 className="font-bold text-xl">Browse Books</h2>
 				<div className="flex flex-col mt-7 gap-2">
 					<InputGroup className="bg-white">
@@ -136,7 +136,7 @@ function RouteComponent() {
 				</div>
 			</div>
 
-			<section className="bg-white grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-7 pb-12 gap-7">
+			<section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-7 pb-12 gap-7 xl:px-0">
 				<BookCard
 					authorName="joji"
 					bookName="wormhole"

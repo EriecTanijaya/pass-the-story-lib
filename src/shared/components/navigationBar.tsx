@@ -39,10 +39,10 @@ export function NavigationBar() {
 		<header className="bg-background/80 sticky top-0 z-10 backdrop-blur-md border-b border-b-muted-foreground/50">
 			<NavigationMenu
 				viewport={isMobile}
-				className="max-w-7xl mx-auto px-7 justify-between h-16 flex items-center"
+				className="max-w-7xl mx-auto px-7 justify-between h-16 flex items-center xl:px-0"
 			>
 				<div className="shrink-0 flex items-center gap-4">
-					<img src="./pts-logo.png" alt="logo" className="size-8" />
+					<img src="/pts-logo.png" alt="logo" className="size-8" />
 					<span className="font-bold text-lg leading-5">
 						Pass The Story <br /> Library
 					</span>
