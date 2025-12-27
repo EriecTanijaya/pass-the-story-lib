@@ -13,20 +13,17 @@ import {
 	CardTitle,
 } from "./ui/card";
 
-const bookCardVariants = cva(
-	"flex flex-col bg-white pt-0 w-full md:w-[280px]",
-	{
-		variants: {
-			variant: {
-				default: "",
-				carousel: "first:ml-7 last:mr-7",
-			},
-		},
-		defaultVariants: {
-			variant: "default",
+const bookCardVariants = cva("flex flex-col bg-white pt-0 w-full", {
+	variants: {
+		variant: {
+			default: "",
+			carousel: "first:ml-7 last:mr-7",
 		},
 	},
-);
+	defaultVariants: {
+		variant: "default",
+	},
+});
 
 type BookCardProps = {
 	bookName: string;
@@ -54,10 +51,10 @@ export function BookCard({
 					<img
 						src={thumbnailUrl}
 						alt="book"
-						className="w-full h-48 object-cover rounded-t-lg"
+						className="w-full h-74 object-cover rounded-t-xl"
 					/>
 				) : (
-					<div className="h-48 flex items-center justify-center p-12 bg-book-card-thumbnail rounded-t-lg">
+					<div className="h-74 flex items-center justify-center p-12 bg-book-card-thumbnail rounded-t-lg">
 						<BookOpenIcon className="size-20 fill-primary" />
 					</div>
 				)}

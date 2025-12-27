@@ -133,12 +133,10 @@ function RouteComponent() {
 							Clear Filters
 						</Button>
 					)}
-
-					<pre>{JSON.stringify(filters, null, 2)}</pre>
 				</div>
 			</div>
 
-			<section className="bg-white grid grid-cols-1 p-7 pb-12 gap-7">
+			<section className="bg-white grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-7 pb-12 gap-7">
 				<BookCard
 					authorName="joji"
 					bookName="wormhole"
@@ -153,6 +151,14 @@ function RouteComponent() {
 					language="english"
 					tags={["gore"]}
 					thumbnailUrl="landscape.jpg"
+				/>
+				<BookCard
+					authorName="joji"
+					bookName="wormhole"
+					genre="mystery"
+					language="english"
+					tags={["gore"]}
+					thumbnailUrl="portrait.jpg"
 				/>
 			</section>
 		</main>

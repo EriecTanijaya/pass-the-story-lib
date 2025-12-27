@@ -1,4 +1,5 @@
 import {
+	ArrowUpRightIcon,
 	BellIcon,
 	BookOpenIcon,
 	CalendarIcon,
@@ -6,6 +7,7 @@ import {
 	EnvelopeIcon,
 	type Icon,
 	MagnifyingGlassIcon,
+	MapPinIcon,
 	SparkleIcon,
 	UsersIcon,
 } from "@phosphor-icons/react";
@@ -40,6 +42,14 @@ const books = [
 		language: "idno",
 		thumbnailUrl: "/portrait.jpg",
 		tags: ["happy", "mystery"],
+	},
+	{
+		authorName: "reina",
+		bookName: "flower",
+		genre: "romance",
+		language: "english",
+		thumbnailUrl: "",
+		tags: ["happy", "sad"],
 	},
 ];
 
@@ -76,7 +86,7 @@ function App() {
 
 			<section>
 				<h2 className="text-xl font-bold ml-7 mb-9">Featured Books</h2>
-				<div className="flex justify-between overflow-auto gap-3">
+				<div className="flex overflow-auto gap-3">
 					{books.map((book) => (
 						<BookCard key={book.bookName} {...book} variant="carousel" />
 					))}
@@ -85,7 +95,7 @@ function App() {
 
 			<section className="px-7">
 				<h2 className="text-xl font-bold mb-9">How It Works</h2>
-				<div className="grid grid-cols-1 gap-7">
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-7">
 					{howToSteps.map((step, idx) => (
 						<HowToCard key={step.title} {...step} stepNum={idx + 1} />
 					))}
@@ -94,64 +104,70 @@ function App() {
 
 			<section className="px-7 pb-12">
 				<h2 className="text-xl font-bold mb-9">Upcoming Meetup</h2>
-				<Card>
+
+				<Card className="md:w-96">
 					<CardHeader>
 						<CardTitle>Luar Garis Cafe</CardTitle>
 					</CardHeader>
-					<CardContent>
-						<div className="grid grid-cols-1 gap-5">
-							<div className="flex flex-col gap-2">
-								<div className="flex gap-2 items-center">
-									<div className="flex justify-center items-center rounded-lg size-8 bg-background">
-										<CalendarIcon className="size-5 fill-primary" />
-									</div>
-									<div>
-										<h3 className="text-muted-foreground text-sm">Date</h3>
-										<p className="font-semibold">12 December 2025</p>
-									</div>
-								</div>
-
-								<div className="flex gap-2 items-center">
-									<div className="flex justify-center items-center rounded-lg size-8 bg-background">
-										<ClockIcon className="size-5 fill-primary" />
-									</div>
-									<div>
-										<h3 className="text-muted-foreground text-sm">Time</h3>
-										<p className="font-semibold">16:00 - 18:00 WIB</p>
-									</div>
-								</div>
-							</div>
-
-							<div className="grid grid-cols-2 gap-5 border-t py-4 border-b">
-								<div>
-									<h3 className="font-bold text-2xl text-primary">23</h3>
-									<p className="text-sm text-muted-foreground">Attending</p>
+					<CardContent className="grid grid-cols-1 gap-2">
+						<div className="flex flex-col gap-2">
+							<div className="flex gap-2 items-center">
+								<div className="flex justify-center items-center rounded-lg size-8 bg-background">
+									<CalendarIcon className="size-5 fill-primary" />
 								</div>
 								<div>
-									<h3 className="font-bold text-2xl text-primary">42</h3>
-									<p className="text-sm text-muted-foreground">
-										Books Available
-									</p>
+									<h3 className="text-muted-foreground text-sm">Date</h3>
+									<p className="font-semibold">12 December 2025</p>
 								</div>
 							</div>
 
-							<div className="flex gap-1">
-								<BellIcon className="size-5 fill-primary" />
-								<h3 className="text-muted-foreground text-sm">
-									Reservation deadline:
-									<span className="font-semibold text-foreground">
-										{" "}
-										19 December 2025
-									</span>
-								</h3>
+							<div className="flex gap-2 items-center">
+								<div className="flex justify-center items-center rounded-lg size-8 bg-background">
+									<ClockIcon className="size-5 fill-primary" />
+								</div>
+								<div>
+									<h3 className="text-muted-foreground text-sm">Time</h3>
+									<p className="font-semibold">16:00 - 18:00 WIB</p>
+								</div>
 							</div>
+
+							<div className="flex gap-2 items-center">
+								<div className="flex justify-center items-center rounded-lg size-8 bg-background">
+									<MapPinIcon className="size-6 fill-primary" />
+								</div>
+								<div>
+									<h3 className="text-muted-foreground text-sm">Place</h3>
+									<a
+										href="https://maps.app.goo.gl/mbsG3TRHFVLajQBX9"
+										className="font-semibold inline-flex text-primary underline-offset-4 hover:underline gap-1 items-center"
+									>
+										Luar Garis Coffee Tiban
+										<ArrowUpRightIcon />
+									</a>
+								</div>
+							</div>
+						</div>
+
+						<div className="border-t py-4 border-b">
+							<h3 className="font-bold text-2xl text-primary">42</h3>
+							<p className="text-sm text-muted-foreground">Books Available</p>
+						</div>
+
+						<div className="flex gap-1">
+							<BellIcon className="size-5 fill-primary" />
+							<h3 className="text-muted-foreground text-sm">
+								Reservation deadline:
+								<span className="font-semibold text-foreground">
+									{" "}
+									19 December 2025
+								</span>
+							</h3>
 						</div>
 					</CardContent>
 					<CardFooter className="gap-4">
-						<Button>
+						<Button asChild>
 							<Link to="/books">Reserve</Link>
 						</Button>
-						<Button variant="outline">View</Button>
 					</CardFooter>
 				</Card>
 			</section>
