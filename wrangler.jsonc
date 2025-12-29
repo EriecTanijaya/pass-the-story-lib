@@ -4,4 +4,13 @@
   "compatibility_date": "2025-09-02",
   "compatibility_flags": ["nodejs_compat"],
   "main": "@tanstack/react-start/server-entry",
+  "d1_databases": [
+    {
+      "binding": "pass_the_story_db",
+      "database_name": "pass-the-story",
+      "database_id": "e86333f1-7be8-4f42-aa24-4e0166b07277",
+      "remote": true,
+      "migrations_dir": "drizzle/migrations",
+    },
+  ],
 }
