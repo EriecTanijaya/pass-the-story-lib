@@ -1,5 +1,10 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
-import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import {
+	createRootRoute,
+	HeadContent,
+	Scripts,
+	useMatchRoute,
+} from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { Footer } from "@/shared/components/footer";
 import { NavigationBar } from "@/shared/components/navigationBar";
@@ -44,18 +49,30 @@ export const Route = createRootRoute({
 	}),
 
 	shellComponent: RootDocument,
+
+	beforeLoad: async () => {
+		const user = null;
+
+		return { user };
+	},
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+	const { user } = Route.useRouteContext();
+
+	const matchRoute = useMatchRoute();
+
+	const matchedRoute = matchRoute({ to: "/auth" });
+
 	return (
 		<html lang="en">
 			<head>
 				<HeadContent />
 			</head>
 			<body>
-				<NavigationBar />
+				{!matchedRoute && <NavigationBar />}
 				{children}
-				<Footer />
+				{!matchedRoute && <Footer />}
 				<TanStackDevtools
 					config={{
 						position: "bottom-right",

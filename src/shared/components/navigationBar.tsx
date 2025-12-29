@@ -10,6 +10,7 @@ import {
 	NavigationMenuList,
 	navigationMenuTriggerStyle,
 } from "./ui/navigation-menu";
+import { Separator } from "./ui/separator";
 
 type NavMenu = {
 	name: string;
@@ -70,6 +71,10 @@ export function NavigationBar() {
 					))}
 				</NavigationMenuList>
 
+				<Button variant="ghost" className="hidden md:flex" asChild>
+					<Link to="/auth">Sign in</Link>
+				</Button>
+
 				<div className="md:hidden flex">
 					<button type="button" onClick={() => setIsOpen(!isOpen)}>
 						{!isOpen ? (
@@ -79,10 +84,6 @@ export function NavigationBar() {
 						)}
 					</button>
 				</div>
-
-				<Button variant="ghost" className="hidden md:visible">
-					Sign in
-				</Button>
 			</NavigationMenu>
 
 			<div
@@ -102,6 +103,12 @@ export function NavigationBar() {
 						}}
 					</Link>
 				))}
+
+				<Separator className="mb-3" />
+
+				<Button asChild>
+					<Link to="/auth">Sign In</Link>
+				</Button>
 			</div>
 		</header>
 	);
