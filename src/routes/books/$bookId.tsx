@@ -26,7 +26,7 @@ export const Route = createFileRoute("/books/$bookId")({
 
 function RouteComponent() {
 	return (
-		<main className="flex flex-col max-w-7xl pt-7 px-7 pb-12 gap-5 mx-auto xl:px-0 xl:flex-row">
+		<main className="flex flex-col pt-7 px-7 pb-12 gap-5 bg-white xl:px-24 xl:flex-row">
 			<div className="relative basis-1/2">
 				{/*<img src="/landscape.jpg" alt="book" className="h-96 object-cover" />*/}
 				<div className="h-96 bg-book-card-thumbnail rounded-xl flex justify-center items-center xl:h-full">

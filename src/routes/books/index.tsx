@@ -70,7 +70,7 @@ function RouteComponent() {
 		filters.language !== "all";
 
 	return (
-		<main className="flex flex-col max-w-7xl pt-7 mx-auto">
+		<main className="flex flex-col pt-7 xl:px-24 bg-white">
 			<div className="px-7 pb-7 xl:px-0">
 				<h2 className="font-bold text-xl">Browse Books</h2>
 				<div className="flex flex-col mt-7 gap-2">

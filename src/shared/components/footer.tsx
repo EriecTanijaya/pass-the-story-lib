@@ -7,7 +7,7 @@ import { Link } from "@tanstack/react-router";
 
 export function Footer() {
 	return (
-		<footer className="flex flex-col px-7 border-t border-t-muted-foreground/50 py-6 gap-5 max-w-7xl mx-auto xl:px-0">
+		<footer className="flex flex-col px-7 border-t border-t-muted-foreground/50 py-6 gap-5 xl:px-24">
 			<div className="shrink-0 flex items-center">
 				<span className="font-bold">Pass The Story Library</span>
 			</div>
