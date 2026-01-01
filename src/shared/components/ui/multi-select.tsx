@@ -155,6 +155,7 @@ export function MultiSelectValue({
 		);
 
 		if (overflowElement != null) overflowElement.style.display = "none";
+		// biome-ignore lint/suspicious/useIterableCallbackReturn: <explanation>
 		items.forEach((child) => child.style.removeProperty("display"));
 		let amount = 0;
 		for (let i = items.length - 1; i >= 0; i--) {
@@ -272,6 +273,7 @@ export function MultiSelectContent({
 							}
 						/>
 					) : (
+						// biome-ignore lint/a11y/useButtonType: <explanation>
 						<button className="sr-only" />
 					)}
 					<CommandList>

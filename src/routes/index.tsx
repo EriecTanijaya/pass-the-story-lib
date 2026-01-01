@@ -131,6 +131,7 @@ function App() {
 				</div>
 			</section>
 
+			{/** biome-ignore lint/correctness/useUniqueElementIds: <explanation> */}
 			<section className="px-7 xl:px-0" id="how-it-works">
 				<h2 className="text-xl font-bold mb-9">How It Works</h2>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-7">
