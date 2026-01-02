@@ -1,16 +1,16 @@
 import { ListIcon, XIcon } from "@phosphor-icons/react";
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
+import { authClient } from "@/app/member/lib/auth/clientAuth";
 import { useIsMobile } from "../hooks/use-mobile";
 import { Button } from "./ui/button";
 import {
 	NavigationMenu,
 	NavigationMenuItem,
-	NavigationMenuLink,
 	NavigationMenuList,
-	navigationMenuTriggerStyle,
 } from "./ui/navigation-menu";
 import { Separator } from "./ui/separator";
+import { Skeleton } from "./ui/skeleton";
 
 type NavMenu = {
 	name: string;
@@ -36,6 +36,8 @@ export function NavigationBar() {
 		},
 	];
 
+	const { data, isPending } = authClient.useSession();
+
 	return (
 		<header className="bg-background/80 sticky top-0 z-10 backdrop-blur-md border-b border-b-muted-foreground/50 xl:px-24">
 			<NavigationMenu viewport={isMobile} className="h-16">
@@ -51,16 +53,10 @@ export function NavigationBar() {
 						<NavigationMenuItem key={nav.name}>
 							<Link to={nav.link}>
 								{({ isActive }) => {
-									const style = isActive
-										? "bg-secondary text-foreground"
-										: "bg-transparent text-muted-foreground";
-
 									return (
-										<NavigationMenuLink
-											className={`${navigationMenuTriggerStyle()} ${style}`}
-										>
+										<Button variant={isActive ? "secondary" : "ghost"}>
 											{nav.name}
-										</NavigationMenuLink>
+										</Button>
 									);
 								}}
 							</Link>
@@ -68,9 +64,43 @@ export function NavigationBar() {
 					))}
 				</NavigationMenuList>
 
-				<Button variant="ghost" className="hidden md:flex" asChild>
-					<Link to="/auth">Sign in</Link>
-				</Button>
+				{(() => {
+					if (isPending) {
+						return (
+							<div className="flex items-center gap-3">
+								<Skeleton className="size-6 rounded-full" />
+								<Skeleton className="h-6 w-24" />
+							</div>
+						);
+					}
+
+					if (!data) {
+						return (
+							<Button variant="ghost" className="hidden md:flex" asChild>
+								<Link to="/auth">Sign in</Link>
+							</Button>
+						);
+					}
+
+					return (
+						<div className="flex items-center gap-3">
+							<img
+								src={data.user.image}
+								className="size-9 rounded-full"
+								alt="profile"
+							/>
+
+							<p className="font-semibold">{data.user.name}</p>
+							<Button
+								variant="outline"
+								size="sm"
+								onClick={() => authClient.signOut()}
+							>
+								Logout
+							</Button>
+						</div>
+					);
+				})()}
 
 				<div className="md:hidden flex">
 					<button type="button" onClick={() => setIsOpen(!isOpen)}>

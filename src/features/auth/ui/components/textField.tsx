@@ -14,7 +14,7 @@ export function TextField({ label, type }: TextFieldProps) {
 	const errors = useStore(field.store, (state) => state.meta.errors);
 
 	return (
-		<Field orientation="responsive" data-invalid={errors.length > 0}>
+		<Field data-invalid={errors.length > 0}>
 			<FieldLabel className="basis-1/3">{label}</FieldLabel>
 			<Input
 				type={type}

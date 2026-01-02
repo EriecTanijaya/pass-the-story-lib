@@ -1,4 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import {
+	createFileRoute,
+	ErrorComponent,
+	type ErrorComponentProps,
+} from "@tanstack/react-router";
 import { auth } from "@/app/member/lib/auth/serverAuth";
 
 export const Route = createFileRoute("/api/auth/$")({
@@ -6,12 +10,15 @@ export const Route = createFileRoute("/api/auth/$")({
 		handlers: {
 			GET: async ({ request }: { request: Request }) => {
 				return auth.handler(request);
-				// return new Response();
 			},
 			POST: async ({ request }: { request: Request }) => {
 				return auth.handler(request);
-				// return new Response();
 			},
 		},
 	},
+	errorComponent: AuthError,
 });
+
+function AuthError({ error }: ErrorComponentProps) {
+	return <ErrorComponent error={error} />;
+}
