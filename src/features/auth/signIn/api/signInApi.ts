@@ -1,35 +1,44 @@
+import { createServerFn } from "@tanstack/react-start";
+import { eq } from "drizzle-orm";
 import { getAppSession } from "@/app/auth/lib/session/tanstackSession";
 import { userTable } from "@/app/auth/model/userTable";
 import { db } from "@/shared/lib/db";
-import { redirect } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
-import { eq } from "drizzle-orm";
 
-export const login = createServerFn({ method: "POST" })
-  .inputValidator((data: { username: string; password: string }) => data)
-  .handler(async ({ data }) => {
-    const { username, password } = data;
+export const loginApi = createServerFn({ method: "POST" })
+	.inputValidator((data: { userName: string; password: string }) => data)
+	.handler(async ({ data }) => {
+		const { userName, password } = data;
 
-    const rawUsers = await db
-      .select()
-      .from(userTable)
-      .where(eq(userTable.username, username));
+		const rawUsers = await db
+			.select()
+			.from(userTable)
+			.where(eq(userTable.username, userName));
 
-    if (!rawUsers.length) {
-      return {
-        error: "User not registered",
-      };
-    }
+		if (!rawUsers.length) {
+			return {
+				success: false,
+				error: "User not registered",
+			};
+		}
 
-    const rawUser = rawUsers[0];
+		if (!rawUsers.length) {
+			return {
+				success: false,
+				error: "User not registered",
+			};
+		}
 
-    const session = await getAppSession();
+		const rawUser = rawUsers[0];
 
-    await session.update({
-      name: rawUser.name,
-      role: rawUser.role,
-      userId: rawUser.userId,
-    });
+		const session = await getAppSession();
 
-    redirect({ to: "/" });
-  });
+		await session.update({
+			name: rawUser.name,
+			role: rawUser.role,
+			userId: rawUser.userId,
+		});
+
+		return {
+			success: true,
+		};
+	});

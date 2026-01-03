@@ -11,7 +11,8 @@
     "deploy": "bun run build && wrangler deploy",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "cf:typegen": "wrangler types"
+    "cf:typegen": "wrangler types",
+    "tsc": "tsc"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.17.1",

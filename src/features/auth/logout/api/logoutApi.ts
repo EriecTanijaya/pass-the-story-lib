@@ -1,11 +1,13 @@
 import { redirect } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
-import { getAppSession } from "@/app/member/lib/session/tanstackSession";
+import { getAppSession } from "@/app/auth/lib/session/tanstackSession";
 
-export const logout = createServerFn({ method: "POST" }).handler(async () => {
-	const session = await getAppSession();
+export const logoutApi = createServerFn({ method: "POST" }).handler(
+	async () => {
+		const session = await getAppSession();
 
-	await session.clear();
+		await session.clear();
 
-	redirect({ to: "/" });
-});
+		throw redirect({ to: "/" });
+	},
+);

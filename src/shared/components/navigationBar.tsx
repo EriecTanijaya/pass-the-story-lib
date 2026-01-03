@@ -1,7 +1,9 @@
-import { ListIcon, XIcon } from "@phosphor-icons/react";
+import { ListIcon, UserIcon, XIcon } from "@phosphor-icons/react";
 import { Link } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
-import { authClient } from "@/app/member/lib/auth/clientAuth";
+import type { User } from "@/app/auth/model/user";
+import { logoutApi } from "@/features/auth/logout/api/logoutApi";
 import { useIsMobile } from "../hooks/use-mobile";
 import { Button } from "./ui/button";
 import {
@@ -10,16 +12,20 @@ import {
 	NavigationMenuList,
 } from "./ui/navigation-menu";
 import { Separator } from "./ui/separator";
-import { Skeleton } from "./ui/skeleton";
 
 type NavMenu = {
 	name: string;
 	link: string;
 };
 
-export function NavigationBar() {
+type NavigationBarProps = {
+	user: User | null;
+};
+
+export function NavigationBar({ user }: NavigationBarProps) {
 	const isMobile = useIsMobile();
 	const [isOpen, setIsOpen] = useState(false);
+	const logout = useServerFn(logoutApi);
 
 	const navMenus: NavMenu[] = [
 		{
@@ -35,8 +41,6 @@ export function NavigationBar() {
 			link: "/about",
 		},
 	];
-
-	const { data, isPending } = authClient.useSession();
 
 	return (
 		<header className="bg-background/80 sticky top-0 z-10 backdrop-blur-md border-b border-b-muted-foreground/50 xl:px-24">
@@ -65,16 +69,7 @@ export function NavigationBar() {
 				</NavigationMenuList>
 
 				{(() => {
-					if (isPending) {
-						return (
-							<div className="flex items-center gap-3">
-								<Skeleton className="size-6 rounded-full" />
-								<Skeleton className="h-6 w-24" />
-							</div>
-						);
-					}
-
-					if (!data) {
+					if (!user) {
 						return (
 							<Button variant="ghost" className="hidden md:flex" asChild>
 								<Link to="/auth">Sign in</Link>
@@ -84,18 +79,9 @@ export function NavigationBar() {
 
 					return (
 						<div className="flex items-center gap-3">
-							<img
-								src={data.user.image}
-								className="size-9 rounded-full"
-								alt="profile"
-							/>
-
-							<p className="font-semibold">{data.user.name}</p>
-							<Button
-								variant="outline"
-								size="sm"
-								onClick={() => authClient.signOut()}
-							>
+							<UserIcon weight="bold" className="size-5 rounded-full" />
+							<p className="font-semibold">{user.fullName}</p>
+							<Button variant="outline" size="sm" onClick={() => logout()}>
 								Logout
 							</Button>
 						</div>

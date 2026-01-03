@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { SignUpForm } from "@/features/auth/register/ui/signUpForm";
 import { SignInForm } from "@/features/auth/signIn/ui/signInForm";
-import { SignUpForm } from "@/features/auth/signIn/ui/signUpForm";
 import {
 	Card,
 	CardContent,

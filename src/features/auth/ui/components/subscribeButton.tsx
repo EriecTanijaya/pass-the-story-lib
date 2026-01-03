@@ -1,6 +1,6 @@
 import { Button } from "@/shared/components/ui/button";
 import { Spinner } from "@/shared/components/ui/spinner";
-import { useFormContext } from "../../model/formContext";
+import { useFormContext } from "../../signIn/model/formContext";
 
 export function SubscribeButton({ label }: { label: string }) {
 	const form = useFormContext();

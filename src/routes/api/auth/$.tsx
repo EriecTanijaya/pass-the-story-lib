@@ -3,16 +3,15 @@ import {
 	ErrorComponent,
 	type ErrorComponentProps,
 } from "@tanstack/react-router";
-import { auth } from "@/app/member/lib/auth/serverAuth";
 
 export const Route = createFileRoute("/api/auth/$")({
 	server: {
 		handlers: {
 			GET: async ({ request }: { request: Request }) => {
-				return auth.handler(request);
+				return Response.json({ message: "hi" });
 			},
 			POST: async ({ request }: { request: Request }) => {
-				return auth.handler(request);
+				return Response.json({ message: "hi" });
 			},
 		},
 	},
