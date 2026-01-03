@@ -24,7 +24,9 @@ import {
 	CardTitle,
 } from "@/shared/components/ui/card";
 
-export const Route = createFileRoute("/")({ component: App });
+export const Route = createFileRoute("/")({
+	component: App,
+});
 
 const books = [
 	{

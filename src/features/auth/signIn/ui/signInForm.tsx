@@ -1,9 +1,7 @@
 import { formOptions } from "@tanstack/react-form";
 import { useRouter } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
 import { FieldGroup } from "@/shared/components/ui/field";
-import { loginApi } from "../api/signInApi";
-import { useAppForm } from "../model/form";
+import { useAppForm } from "../../model/form";
 
 const formOpts = formOptions({
 	defaultValues: {
@@ -13,23 +11,13 @@ const formOpts = formOptions({
 });
 
 export function SignInForm() {
-	const router = useRouter();
-	const login = useServerFn(loginApi);
+	const _router = useRouter();
 
 	const form = useAppForm({
 		...formOpts,
 		asyncDebounceMs: 500,
 		onSubmit: async ({ value }) => {
-			const res = await login({
-				data: { password: value.password, userName: value.userName },
-			});
-
-			if (res.error) {
-				alert(res.error);
-				return;
-			}
-
-			router.navigate({ to: "/" });
+			console.log({ value });
 		},
 	});
 

@@ -1,23 +1,15 @@
-import {
-	createFileRoute,
-	ErrorComponent,
-	type ErrorComponentProps,
-} from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
+import { authApi } from "@/app/auth/lib/betterAuth/authServer";
 
 export const Route = createFileRoute("/api/auth/$")({
 	server: {
 		handlers: {
 			GET: async ({ request }: { request: Request }) => {
-				return Response.json({ message: "hi" });
+				return authApi.handler(request);
 			},
 			POST: async ({ request }: { request: Request }) => {
-				return Response.json({ message: "hi" });
+				return authApi.handler(request);
 			},
 		},
 	},
-	errorComponent: AuthError,
 });
-
-function AuthError({ error }: ErrorComponentProps) {
-	return <ErrorComponent error={error} />;
-}

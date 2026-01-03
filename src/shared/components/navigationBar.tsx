@@ -1,9 +1,8 @@
 import { ListIcon, UserIcon, XIcon } from "@phosphor-icons/react";
-import { Link } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
+import { Link, useRouter } from "@tanstack/react-router";
 import { useState } from "react";
+import { authClient } from "@/app/auth/lib/betterAuth/authClient";
 import type { User } from "@/app/auth/model/user";
-import { logoutApi } from "@/features/auth/logout/api/logoutApi";
 import { useIsMobile } from "../hooks/use-mobile";
 import { Button } from "./ui/button";
 import {
@@ -23,9 +22,9 @@ type NavigationBarProps = {
 };
 
 export function NavigationBar({ user }: NavigationBarProps) {
+	const router = useRouter();
 	const isMobile = useIsMobile();
 	const [isOpen, setIsOpen] = useState(false);
-	const logout = useServerFn(logoutApi);
 
 	const navMenus: NavMenu[] = [
 		{
@@ -42,8 +41,28 @@ export function NavigationBar({ user }: NavigationBarProps) {
 		},
 	];
 
+	function handleSignIn() {
+		authClient.oneTap({
+			fetchOptions: {
+				onSuccess: () => {
+					router.invalidate();
+				},
+			},
+		});
+	}
+
+	function handleSignOut() {
+		authClient.signOut({
+			fetchOptions: {
+				onSuccess: () => {
+					router.invalidate();
+				},
+			},
+		});
+	}
+
 	return (
-		<header className="bg-background/80 sticky top-0 z-10 backdrop-blur-md border-b border-b-muted-foreground/50 xl:px-24">
+		<header className="bg-background/80 sticky top-0 z-10 backdrop-blur-md border-b border-b-muted-foreground/50 px-7 xl:px-24">
 			<NavigationMenu viewport={isMobile} className="h-16">
 				<Link to="/" className="flex items-center gap-3">
 					<img src="/pts-logo.png" alt="logo" className="size-8" />
@@ -71,17 +90,30 @@ export function NavigationBar({ user }: NavigationBarProps) {
 				{(() => {
 					if (!user) {
 						return (
-							<Button variant="ghost" className="hidden md:flex" asChild>
-								<Link to="/auth">Sign in</Link>
+							<Button
+								variant="ghost"
+								className="hidden md:flex"
+								onClick={handleSignIn}
+							>
+								Sign In
 							</Button>
 						);
 					}
 
 					return (
-						<div className="flex items-center gap-3">
-							<UserIcon weight="bold" className="size-5 rounded-full" />
-							<p className="font-semibold">{user.fullName}</p>
-							<Button variant="outline" size="sm" onClick={() => logout()}>
+						<div className="hidden md:flex items-center gap-3">
+							{user.profileImageUrl ? (
+								<img
+									src={user.profileImageUrl}
+									alt="profile"
+									className="size-7 rounded-full"
+								/>
+							) : (
+								<UserIcon weight="bold" className="size-5 rounded-full" />
+							)}
+
+							<p className="font-semibold">{user.name}</p>
+							<Button variant="outline" size="sm" onClick={handleSignOut}>
 								Logout
 							</Button>
 						</div>
@@ -119,9 +151,13 @@ export function NavigationBar({ user }: NavigationBarProps) {
 
 				<Separator className="mb-3" />
 
-				<Button asChild>
-					<Link to="/auth">Sign In</Link>
-				</Button>
+				{user ? (
+					<Button variant="outline" size="sm" onClick={handleSignOut}>
+						Logout
+					</Button>
+				) : (
+					<Button onClick={handleSignIn}>Sign In</Button>
+				)}
 			</div>
 		</header>
 	);

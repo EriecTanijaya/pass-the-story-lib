@@ -1,9 +1,7 @@
 import { formOptions } from "@tanstack/react-form";
 import { useRouter } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
 import { FieldGroup } from "@/shared/components/ui/field";
-import { useAppForm, withFieldGroup } from "../../signIn/model/form";
-import { registerApi } from "../api/registerApi";
+import { useAppForm, withFieldGroup } from "../../model/form";
 
 const formOpts = formOptions({
 	defaultValues: {
@@ -56,26 +54,13 @@ const FieldGroupPassword = withFieldGroup({
 });
 
 export function SignUpForm() {
-	const router = useRouter();
-	const register = useServerFn(registerApi);
+	const _router = useRouter();
 
 	const form = useAppForm({
 		...formOpts,
 		asyncDebounceMs: 500,
 		onSubmit: async ({ value }) => {
-			const res = await register({
-				data: {
-					fullName: value.fullName,
-					password: value.password.password,
-					username: value.userName,
-				},
-			});
-
-			if (!res.success) {
-				alert(res.error);
-			}
-
-			router.navigate({ to: "/" });
+			console.log({ value });
 		},
 	});
 

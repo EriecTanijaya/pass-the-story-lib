@@ -1,3 +1,4 @@
 export type User = {
-	fullName: string;
+	name: string;
+	profileImageUrl?: string;
 };

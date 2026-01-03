@@ -7,10 +7,35 @@ import {
 	useMatchRoute,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-import { getCurrentUserApi } from "@/features/auth/getCurrentUser/api/getCurrentUserApi";
+import { createServerFn } from "@tanstack/react-start";
+import { getRequestHeaders } from "@tanstack/react-start/server";
+import { authApi } from "@/app/auth/lib/betterAuth/authServer";
+import type { User } from "@/app/auth/model/user";
 import { Footer } from "@/shared/components/footer";
 import { NavigationBar } from "@/shared/components/navigationBar";
 import appCss from "../styles.css?url";
+
+const getCurrentUserApi = createServerFn({ method: "GET" }).handler(
+	async () => {
+		const headers = getRequestHeaders();
+		const session = await authApi.api.getSession({ headers });
+
+		if (!session) {
+			return {
+				success: false,
+				error: `Session not found`,
+			};
+		}
+
+		return {
+			success: true,
+			user: {
+				name: session.user.name,
+				profileImgUrl: session.user.image,
+			},
+		};
+	},
+);
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 	{
@@ -56,11 +81,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 		beforeLoad: async () => {
 			const res = await getCurrentUserApi();
 
-			if (res.success) {
-				return { user: res.user };
+			let user: User | null = null;
+
+			if (!res.success) {
+				return {
+					user,
+				};
 			}
 
-			return { user: null };
+			user = {
+				name: res.user.name,
+				profileImageUrl: res.user.profileImgUrl ?? "",
+			};
+
+			return {
+				user,
+			};
 		},
 	},
 );
