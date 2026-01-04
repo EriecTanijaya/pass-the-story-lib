@@ -1,5 +1,5 @@
 import { ListIcon, UserIcon, XIcon } from "@phosphor-icons/react";
-import { Link, useRouter } from "@tanstack/react-router";
+import { Link, useLocation, useRouter } from "@tanstack/react-router";
 import { useState } from "react";
 import { authClient } from "@/app/auth/lib/betterAuth/authClient";
 import type { User } from "@/app/auth/model/user";
@@ -23,6 +23,7 @@ type NavigationBarProps = {
 
 export function NavigationBar({ user }: NavigationBarProps) {
 	const router = useRouter();
+	const location = useLocation();
 	const isMobile = useIsMobile();
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -41,7 +42,7 @@ export function NavigationBar({ user }: NavigationBarProps) {
 		},
 	];
 
-	function handleSignIn() {
+	function _handleSignIn() {
 		authClient.oneTap({
 			fetchOptions: {
 				onSuccess: () => {
@@ -90,12 +91,15 @@ export function NavigationBar({ user }: NavigationBarProps) {
 				{(() => {
 					if (!user) {
 						return (
-							<Button
-								variant="ghost"
-								className="hidden md:flex"
-								onClick={handleSignIn}
-							>
-								Sign In
+							<Button variant="ghost" className="hidden md:flex" asChild>
+								<Link
+									to="/auth"
+									search={{
+										from: location.pathname,
+									}}
+								>
+									Sign In
+								</Link>
 							</Button>
 						);
 					}
@@ -132,7 +136,7 @@ export function NavigationBar({ user }: NavigationBarProps) {
 			</NavigationMenu>
 
 			<div
-				className={`md:hidden ${isOpen ? "flex" : "hidden"} px-5 space-y-1 py-3 flex-col border-t border-t-secondary`}
+				className={`md:hidden ${isOpen ? "flex" : "hidden"} space-y-1 py-3 flex-col border-t border-t-secondary`}
 			>
 				{navMenus.map((nav) => (
 					<Link key={nav.name} to={nav.link}>
@@ -156,7 +160,16 @@ export function NavigationBar({ user }: NavigationBarProps) {
 						Logout
 					</Button>
 				) : (
-					<Button onClick={handleSignIn}>Sign In</Button>
+					<Button asChild>
+						<Link
+							to="/auth"
+							search={{
+								from: location.pathname,
+							}}
+						>
+							Sign In
+						</Link>
+					</Button>
 				)}
 			</div>
 		</header>

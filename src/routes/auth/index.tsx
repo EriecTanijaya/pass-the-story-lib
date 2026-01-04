@@ -15,7 +15,7 @@ import {
 	TabsTrigger,
 } from "@/shared/components/ui/tabs";
 
-export const Route = createFileRoute("/auth")({
+export const Route = createFileRoute("/auth/")({
 	component: RouteComponent,
 });
 

@@ -9,7 +9,7 @@ import {
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { createServerFn } from "@tanstack/react-start";
 import { getRequestHeaders } from "@tanstack/react-start/server";
-import { authApi } from "@/app/auth/lib/betterAuth/authServer";
+import { auth } from "@/app/auth/lib/betterAuth/authServer";
 import type { User } from "@/app/auth/model/user";
 import { Footer } from "@/shared/components/footer";
 import { NavigationBar } from "@/shared/components/navigationBar";
@@ -18,7 +18,7 @@ import appCss from "../styles.css?url";
 const getCurrentUserApi = createServerFn({ method: "GET" }).handler(
 	async () => {
 		const headers = getRequestHeaders();
-		const session = await authApi.api.getSession({ headers });
+		const session = await auth.api.getSession({ headers });
 
 		if (!session) {
 			return {
@@ -106,7 +106,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 
 	const matchRoute = useMatchRoute();
 
-	const matchedRoute = matchRoute({ to: "/auth" });
+	const matchedRoute = matchRoute({ to: "/auth", fuzzy: true });
 
 	return (
 		<html lang="en">

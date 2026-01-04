@@ -9,20 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthedRouteRouteImport } from './routes/_authed/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BooksIndexRouteImport } from './routes/books/index'
+import { Route as AuthIndexRouteImport } from './routes/auth/index'
 import { Route as BooksBookIdRouteImport } from './routes/books/$bookId'
-import { Route as AuthedAdminRouteImport } from './routes/_authed/admin'
+import { Route as AuthConfirmPasswordRouteImport } from './routes/auth/confirm-password'
+import { Route as AuthedAdminIndexRouteImport } from './routes/_authed/admin/index'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -42,14 +38,24 @@ const BooksIndexRoute = BooksIndexRouteImport.update({
   path: '/books/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthIndexRoute = AuthIndexRouteImport.update({
+  id: '/auth/',
+  path: '/auth/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BooksBookIdRoute = BooksBookIdRouteImport.update({
   id: '/books/$bookId',
   path: '/books/$bookId',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthedAdminRoute = AuthedAdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
+const AuthConfirmPasswordRoute = AuthConfirmPasswordRouteImport.update({
+  id: '/auth/confirm-password',
+  path: '/auth/confirm-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthedAdminIndexRoute = AuthedAdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
   getParentRoute: () => AuthedRouteRoute,
 } as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
@@ -61,82 +67,82 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/auth': typeof AuthRoute
-  '/admin': typeof AuthedAdminRoute
+  '/auth/confirm-password': typeof AuthConfirmPasswordRoute
   '/books/$bookId': typeof BooksBookIdRoute
+  '/auth': typeof AuthIndexRoute
   '/books': typeof BooksIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/admin': typeof AuthedAdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/auth': typeof AuthRoute
-  '/admin': typeof AuthedAdminRoute
+  '/auth/confirm-password': typeof AuthConfirmPasswordRoute
   '/books/$bookId': typeof BooksBookIdRoute
+  '/auth': typeof AuthIndexRoute
   '/books': typeof BooksIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/admin': typeof AuthedAdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authed': typeof AuthedRouteRouteWithChildren
   '/about': typeof AboutRoute
-  '/auth': typeof AuthRoute
-  '/_authed/admin': typeof AuthedAdminRoute
+  '/auth/confirm-password': typeof AuthConfirmPasswordRoute
   '/books/$bookId': typeof BooksBookIdRoute
+  '/auth/': typeof AuthIndexRoute
   '/books/': typeof BooksIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/_authed/admin/': typeof AuthedAdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
-    | '/auth'
-    | '/admin'
+    | '/auth/confirm-password'
     | '/books/$bookId'
+    | '/auth'
     | '/books'
     | '/api/auth/$'
+    | '/admin'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
-    | '/auth'
-    | '/admin'
+    | '/auth/confirm-password'
     | '/books/$bookId'
+    | '/auth'
     | '/books'
     | '/api/auth/$'
+    | '/admin'
   id:
     | '__root__'
     | '/'
     | '/_authed'
     | '/about'
-    | '/auth'
-    | '/_authed/admin'
+    | '/auth/confirm-password'
     | '/books/$bookId'
+    | '/auth/'
     | '/books/'
     | '/api/auth/$'
+    | '/_authed/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthedRouteRoute: typeof AuthedRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
-  AuthRoute: typeof AuthRoute
+  AuthConfirmPasswordRoute: typeof AuthConfirmPasswordRoute
   BooksBookIdRoute: typeof BooksBookIdRoute
+  AuthIndexRoute: typeof AuthIndexRoute
   BooksIndexRoute: typeof BooksIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -165,6 +171,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BooksIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth/': {
+      id: '/auth/'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/books/$bookId': {
       id: '/books/$bookId'
       path: '/books/$bookId'
@@ -172,11 +185,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BooksBookIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authed/admin': {
-      id: '/_authed/admin'
+    '/auth/confirm-password': {
+      id: '/auth/confirm-password'
+      path: '/auth/confirm-password'
+      fullPath: '/auth/confirm-password'
+      preLoaderRoute: typeof AuthConfirmPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authed/admin/': {
+      id: '/_authed/admin/'
       path: '/admin'
       fullPath: '/admin'
-      preLoaderRoute: typeof AuthedAdminRouteImport
+      preLoaderRoute: typeof AuthedAdminIndexRouteImport
       parentRoute: typeof AuthedRouteRoute
     }
     '/api/auth/$': {
@@ -190,11 +210,11 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthedRouteRouteChildren {
-  AuthedAdminRoute: typeof AuthedAdminRoute
+  AuthedAdminIndexRoute: typeof AuthedAdminIndexRoute
 }
 
 const AuthedRouteRouteChildren: AuthedRouteRouteChildren = {
-  AuthedAdminRoute: AuthedAdminRoute,
+  AuthedAdminIndexRoute: AuthedAdminIndexRoute,
 }
 
 const AuthedRouteRouteWithChildren = AuthedRouteRoute._addFileChildren(
@@ -205,8 +225,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthedRouteRoute: AuthedRouteRouteWithChildren,
   AboutRoute: AboutRoute,
-  AuthRoute: AuthRoute,
+  AuthConfirmPasswordRoute: AuthConfirmPasswordRoute,
   BooksBookIdRoute: BooksBookIdRoute,
+  AuthIndexRoute: AuthIndexRoute,
   BooksIndexRoute: BooksIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }

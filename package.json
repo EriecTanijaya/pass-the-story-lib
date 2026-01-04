@@ -8,11 +8,12 @@
     "preview": "bun run build && vite preview",
     "test": "vitest run",
     "lint": "biome check --write --unsafe",
-    "deploy": "bun run build -- --mode prod && wrangler secret bulk .env.prod && wrangler deploy",
+    "deploy": "bun run build --mode prod && wrangler secret bulk .env.prod && wrangler deploy",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "cf:typegen": "wrangler types",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "auth-db:push": "bunx @better-auth/cli generate --config ./src/app/auth/lib/betterAuth/authServer.ts --output ./src/app/auth/lib/betterAuth/authTable.ts && bun db:push"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.17.1",
