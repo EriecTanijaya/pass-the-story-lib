@@ -20,7 +20,7 @@ import {
 } from "@/shared/components/ui/card";
 import { Separator } from "@/shared/components/ui/separator";
 
-export const Route = createFileRoute("/books/$bookId")({
+export const Route = createFileRoute("/_member/books/$bookId")({
 	component: RouteComponent,
 });
 
@@ -124,5 +124,5 @@ function RouteComponent() {
 				</Card>
 			</section>
 		</main>
-	);
+	)
 }

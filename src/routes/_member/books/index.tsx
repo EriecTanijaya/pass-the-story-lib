@@ -26,7 +26,7 @@ import {
 	SelectValue,
 } from "@/shared/components/ui/select";
 
-export const Route = createFileRoute("/books/")({
+export const Route = createFileRoute("/_member/books/")({
 	component: RouteComponent,
 });
 
@@ -43,21 +43,21 @@ function RouteComponent() {
 		setFilters({
 			...filters,
 			search: searchQuery,
-		});
+		})
 	}
 
 	function updateGenreQuery(genres: string[]) {
 		setFilters({
 			...filters,
 			genres,
-		});
+		})
 	}
 
 	function updateLanguageQuery(lang: string) {
 		setFilters({
 			...filters,
 			language: lang,
-		});
+		})
 	}
 
 	function deleteFilters() {
@@ -162,5 +162,5 @@ function RouteComponent() {
 				/>
 			</section>
 		</main>
-	);
+	)
 }
