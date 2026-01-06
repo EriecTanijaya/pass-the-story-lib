@@ -124,5 +124,5 @@ function RouteComponent() {
 				</Card>
 			</section>
 		</main>
-	)
+	);
 }

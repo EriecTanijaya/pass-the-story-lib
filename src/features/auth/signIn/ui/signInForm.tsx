@@ -1,13 +1,8 @@
-import { WarningIcon, XIcon } from "@phosphor-icons/react";
 import { formOptions } from "@tanstack/react-form";
 import { useRouter, useSearch } from "@tanstack/react-router";
 import { useState } from "react";
 import { authClient } from "@/app/auth/lib/betterAuth/authClient";
-import {
-	Alert,
-	AlertDescription,
-	AlertTitle,
-} from "@/shared/components/ui/alert";
+import { ErrorSnackBar } from "@/shared/components/errorSnackBar";
 import { FieldGroup } from "@/shared/components/ui/field";
 import { useAppForm } from "../../model/form";
 
@@ -48,23 +43,7 @@ export function SignInForm() {
 				form.handleSubmit();
 			}}
 		>
-			{error && (
-				<Alert variant="destructive" className=" mb-3">
-					<WarningIcon />
-					<div className="flex justify-between">
-						<AlertTitle>Error</AlertTitle>
-						<button
-							type="button"
-							className="cursor-pointer"
-							onClick={() => setError("")}
-						>
-							<XIcon className="size-5" />
-						</button>
-					</div>
-
-					<AlertDescription>{error}</AlertDescription>
-				</Alert>
-			)}
+			<ErrorSnackBar error={error} setError={setError} />
 
 			<FieldGroup>
 				<form.AppField

@@ -43,21 +43,21 @@ function RouteComponent() {
 		setFilters({
 			...filters,
 			search: searchQuery,
-		})
+		});
 	}
 
 	function updateGenreQuery(genres: string[]) {
 		setFilters({
 			...filters,
 			genres,
-		})
+		});
 	}
 
 	function updateLanguageQuery(lang: string) {
 		setFilters({
 			...filters,
 			language: lang,
-		})
+		});
 	}
 
 	function deleteFilters() {
@@ -162,5 +162,5 @@ function RouteComponent() {
 				/>
 			</section>
 		</main>
-	)
+	);
 }
