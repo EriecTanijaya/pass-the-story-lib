@@ -1,4 +1,7 @@
 import {
+  ArrowDownIcon,
+  ArrowUpIcon,
+  BookIcon,
   CheckIcon,
   ChecksIcon,
   HandArrowDownIcon,
@@ -51,27 +54,20 @@ function RouteComponent() {
 
       <Tabs defaultValue="pending">
         <TabsList className="w-full sm:w-fit overflow-x-auto justify-start mb-3">
-          <TabsTrigger value="pending">
-            <HourglassIcon className="size-5" /> (1)
-          </TabsTrigger>
-          <TabsTrigger value="confirmed">
-            <ChecksIcon className="size-5" />
-          </TabsTrigger>
-          <TabsTrigger value="borrowed">
-            <HandArrowDownIcon className="size-5" />
-          </TabsTrigger>
-          <TabsTrigger value="returned">
-            <HandArrowUpIcon className="size-5" />
-          </TabsTrigger>
+          <TabsTrigger value="pending">Pending (1)</TabsTrigger>
+          <TabsTrigger value="confirmed">Confirmed</TabsTrigger>
+          <TabsTrigger value="borrowed">Borrowed</TabsTrigger>
+          <TabsTrigger value="returned">Returned</TabsTrigger>
         </TabsList>
 
         <TabsContent value="pending" className="space-y-3">
           <Card className="py-2 gap-0">
             <CardHeader className="px-4">
-              <div className="flex justify-between">
-                <div className="flex gap-3 items-center">
+              <div className="flex justify-between items-center">
+                <div className="flex flex-col">
                   {/*<Checkbox className="size-5" />*/}
                   <p className="font-semibold">Book Name</p>
+                  <p className="text-muted-foreground text-sm">BOOKCODE123</p>
                 </div>
 
                 <div className="flex gap-3">
@@ -86,7 +82,72 @@ function RouteComponent() {
             </CardHeader>
 
             <Separator />
-            <CardContent className="pt-2">
+
+            <CardContent className="pt-2 px-4">
+              <div className="grid grid-cols-2 gap-2">
+                <p className="text-muted-foreground font-medium w-">Borrower</p>
+                <p>Koka Loka</p>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <p className="text-muted-foreground font-medium w-">Contact</p>
+                <p>6277123123</p>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="confirmed" className="space-y-3">
+          <Card className="py-2 gap-0">
+            <CardHeader className="px-4">
+              <div className="flex justify-between items-center">
+                <div className="flex flex-col">
+                  {/*<Checkbox className="size-5" />*/}
+                  <p className="font-semibold">Book Name</p>
+                  <p className="text-muted-foreground text-sm">BOOKCODE123</p>
+                </div>
+
+                <Button size="sm" className="gap-0">
+                  <BookIcon className="size-5" weight="bold" />
+                  <ArrowUpIcon className="size-5" weight="bold" />
+                </Button>
+              </div>
+            </CardHeader>
+
+            <Separator />
+
+            <CardContent className="pt-2 px-4">
+              <div className="grid grid-cols-2 gap-2">
+                <p className="text-muted-foreground font-medium w-">Borrower</p>
+                <p>Koka Loka</p>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <p className="text-muted-foreground font-medium w-">Contact</p>
+                <p>6277123123</p>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="borrowed" className="space-y-3">
+          <Card className="py-2 gap-0">
+            <CardHeader className="px-4">
+              <div className="flex justify-between items-center">
+                <div className="flex flex-col">
+                  {/*<Checkbox className="size-5" />*/}
+                  <p className="font-semibold">Book Name</p>
+                  <p className="text-muted-foreground text-sm">BOOKCODE123</p>
+                </div>
+
+                <Button size="sm" className="gap-0">
+                  <BookIcon className="size-5" weight="bold" />
+                  <ArrowDownIcon className="size-5" weight="bold" />
+                </Button>
+              </div>
+            </CardHeader>
+
+            <Separator />
+
+            <CardContent className="pt-2 px-4">
               <div className="grid grid-cols-2 gap-2">
                 <p className="text-muted-foreground font-medium w-">Borrower</p>
                 <p>Koka Loka</p>
@@ -101,28 +162,23 @@ function RouteComponent() {
               </div>
             </CardContent>
           </Card>
+        </TabsContent>
 
+        <TabsContent value="returned" className="space-y-3">
           <Card className="py-2 gap-0">
             <CardHeader className="px-4">
-              <div className="flex justify-between">
-                <div className="flex gap-3 items-center">
+              <div className="flex justify-between items-center">
+                <div className="flex flex-col">
                   {/*<Checkbox className="size-5" />*/}
                   <p className="font-semibold">Book Name</p>
-                </div>
-
-                <div className="flex gap-3">
-                  <Button variant="ghost" size="icon-sm">
-                    <CheckIcon className="fill-success size-5" weight="bold" />
-                  </Button>
-                  <Button variant="ghost" size="icon-sm">
-                    <XIcon className="fill-destructive size-5" weight="bold" />
-                  </Button>
+                  <p className="text-muted-foreground text-sm">BOOKCODE123</p>
                 </div>
               </div>
             </CardHeader>
 
             <Separator />
-            <CardContent className="pt-2">
+
+            <CardContent className="pt-2 px-4">
               <div className="grid grid-cols-2 gap-2">
                 <p className="text-muted-foreground font-medium w-">Borrower</p>
                 <p>Koka Loka</p>
@@ -134,6 +190,22 @@ function RouteComponent() {
               <div className="grid grid-cols-2 gap-2">
                 <p className="text-muted-foreground font-medium">Borrow Date</p>
                 <p>25 Jan 26</p>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <p className="text-muted-foreground font-medium">Return Date</p>
+                <p>10 Feb 26</p>
+              </div>
+              <div className="grid grid-cols-2 gap-2 items-center">
+                <p className="text-muted-foreground font-medium">
+                  Borrow Condition
+                </p>
+                <p>Good</p>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <p className="text-muted-foreground font-medium text-sm">
+                  Return Condition
+                </p>
+                <p className="text-sm">Good</p>
               </div>
             </CardContent>
           </Card>
