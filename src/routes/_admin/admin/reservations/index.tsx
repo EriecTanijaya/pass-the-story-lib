@@ -26,27 +26,6 @@ export const Route = createFileRoute("/_admin/admin/reservations/")({
   component: RouteComponent,
 });
 
-export const borrowedBooks: BorrowedBook[] = [
-  {
-    bookName: "The Jagger",
-    borrowerName: "Karlo",
-    phoneNumber: "123",
-    borrowDate: "16 Dec 2025",
-  },
-  {
-    bookName: "The Gfws",
-    borrowerName: "lpopi",
-    phoneNumber: "321",
-    borrowDate: "25 Sep 2025",
-  },
-  {
-    bookName: "Crawling hsgger",
-    borrowerName: "dresa",
-    phoneNumber: "456",
-    borrowDate: "04 Jan 2025",
-  },
-];
-
 function RouteComponent() {
   return (
     <main className="px-7 pt-7 xl:px-24 bg-white h-dvh">
@@ -85,12 +64,16 @@ function RouteComponent() {
 
             <CardContent className="pt-2 px-4">
               <div className="grid grid-cols-2 gap-2">
-                <p className="text-muted-foreground font-medium w-">Borrower</p>
-                <p>Koka Loka</p>
+                <p className="text-muted-foreground font-medium text-sm">
+                  Borrower
+                </p>
+                <p className="text-sm">Koka Loka</p>
               </div>
               <div className="grid grid-cols-2 gap-2">
-                <p className="text-muted-foreground font-medium w-">Contact</p>
-                <p>6277123123</p>
+                <p className="text-muted-foreground font-medium text-sm">
+                  Contact
+                </p>
+                <p className="text-sm">6277123123</p>
               </div>
             </CardContent>
           </Card>
@@ -212,5 +195,55 @@ function RouteComponent() {
         </TabsContent>
       </Tabs>
     </main>
+  );
+}
+
+type ReservationCardProps = {
+  bookName: string;
+  bookId: string;
+  borrowerName: string;
+  borrowerPhoneNumber: string;
+};
+
+function ReservationCard({
+  bookId,
+  bookName,
+  borrowerName,
+  borrowerPhoneNumber,
+}: ReservationCardProps) {
+  return (
+    <Card className="py-2 gap-0">
+      <CardHeader className="px-4">
+        <div className="flex justify-between items-center">
+          <div className="flex flex-col">
+            {/*<Checkbox className="size-5" />*/}
+            <p className="font-semibold">{bookName}</p>
+            <p className="text-muted-foreground text-sm">{bookId}</p>
+          </div>
+
+          <div className="flex gap-3">
+            <Button variant="ghost" size="icon-sm">
+              <CheckIcon className="fill-success size-5" weight="bold" />
+            </Button>
+            <Button variant="ghost" size="icon-sm">
+              <XIcon className="fill-destructive size-5" weight="bold" />
+            </Button>
+          </div>
+        </div>
+      </CardHeader>
+
+      <Separator />
+
+      <CardContent className="pt-2 px-4">
+        <div className="grid grid-cols-2 gap-2">
+          <p className="text-muted-foreground font-medium text-sm">Borrower</p>
+          <p className="text-sm">{borrowerName}</p>
+        </div>
+        <div className="grid grid-cols-2 gap-2">
+          <p className="text-muted-foreground font-medium text-sm">Contact</p>
+          <p className="text-sm">{borrowerPhoneNumber}</p>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
