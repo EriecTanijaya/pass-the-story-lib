@@ -51,6 +51,10 @@ export function NavigationBar({ user }: NavigationBarProps) {
 			name: "Reservations",
 			link: "/admin/reservations",
 		},
+		{
+			name: "Books",
+			link: "/admin/books",
+		},
 	];
 
 	function handleSignOut() {

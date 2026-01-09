@@ -1,28 +1,28 @@
 export type Reservation = {
-  bookId: string;
-  bookName: string;
-  borrower: {
-    name: string;
-    phoneNumber: string;
-  };
+	bookId: string;
+	bookName: string;
+	borrower: {
+		name: string;
+		phoneNumber: string;
+	};
 };
 
 export type PendingReservation = Reservation & {
-  status: "pending";
+	status: "pending";
 };
 
 export type ConfirmedReservation = Reservation & {
-  status: "confirmed";
+	status: "confirmed";
 };
 
 export type BorrowedReservation = Reservation & {
-  status: "borrowed";
-  borrowDate: string;
-  borrowCondition: string;
+	status: "borrowed";
+	borrowDate: string;
+	borrowCondition: string;
 };
 
 export type ReturnedReservation = Reservation & {
-  status: "returned";
-  returnCondition: "string";
-  returnDate: "string";
+	status: "returned";
+	returnCondition: "string";
+	returnDate: "string";
 };

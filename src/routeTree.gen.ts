@@ -20,6 +20,7 @@ import { Route as AdminAdminIndexRouteImport } from './routes/_admin/admin/index
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as MemberBooksBookIdRouteImport } from './routes/_member/books/$bookId'
 import { Route as AdminAdminReservationsIndexRouteImport } from './routes/_admin/admin/reservations/index'
+import { Route as AdminAdminBooksIndexRouteImport } from './routes/_admin/admin/books/index'
 
 const MemberRouteRoute = MemberRouteRouteImport.update({
   id: '/_member',
@@ -75,6 +76,11 @@ const AdminAdminReservationsIndexRoute =
     path: '/admin/reservations/',
     getParentRoute: () => AdminRouteRoute,
   } as any)
+const AdminAdminBooksIndexRoute = AdminAdminBooksIndexRouteImport.update({
+  id: '/admin/books/',
+  path: '/admin/books/',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/about': typeof MemberAboutRoute
@@ -85,6 +91,7 @@ export interface FileRoutesByFullPath {
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/admin': typeof AdminAdminIndexRoute
   '/books': typeof MemberBooksIndexRoute
+  '/admin/books': typeof AdminAdminBooksIndexRoute
   '/admin/reservations': typeof AdminAdminReservationsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -96,6 +103,7 @@ export interface FileRoutesByTo {
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/admin': typeof AdminAdminIndexRoute
   '/books': typeof MemberBooksIndexRoute
+  '/admin/books': typeof AdminAdminBooksIndexRoute
   '/admin/reservations': typeof AdminAdminReservationsIndexRoute
 }
 export interface FileRoutesById {
@@ -110,6 +118,7 @@ export interface FileRoutesById {
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/_admin/admin/': typeof AdminAdminIndexRoute
   '/_member/books/': typeof MemberBooksIndexRoute
+  '/_admin/admin/books/': typeof AdminAdminBooksIndexRoute
   '/_admin/admin/reservations/': typeof AdminAdminReservationsIndexRoute
 }
 export interface FileRouteTypes {
@@ -123,6 +132,7 @@ export interface FileRouteTypes {
     | '/api/auth/$'
     | '/admin'
     | '/books'
+    | '/admin/books'
     | '/admin/reservations'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -134,6 +144,7 @@ export interface FileRouteTypes {
     | '/api/auth/$'
     | '/admin'
     | '/books'
+    | '/admin/books'
     | '/admin/reservations'
   id:
     | '__root__'
@@ -147,6 +158,7 @@ export interface FileRouteTypes {
     | '/api/auth/$'
     | '/_admin/admin/'
     | '/_member/books/'
+    | '/_admin/admin/books/'
     | '/_admin/admin/reservations/'
   fileRoutesById: FileRoutesById
 }
@@ -237,16 +249,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAdminReservationsIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
+    '/_admin/admin/books/': {
+      id: '/_admin/admin/books/'
+      path: '/admin/books'
+      fullPath: '/admin/books'
+      preLoaderRoute: typeof AdminAdminBooksIndexRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
   }
 }
 
 interface AdminRouteRouteChildren {
   AdminAdminIndexRoute: typeof AdminAdminIndexRoute
+  AdminAdminBooksIndexRoute: typeof AdminAdminBooksIndexRoute
   AdminAdminReservationsIndexRoute: typeof AdminAdminReservationsIndexRoute
 }
 
 const AdminRouteRouteChildren: AdminRouteRouteChildren = {
   AdminAdminIndexRoute: AdminAdminIndexRoute,
+  AdminAdminBooksIndexRoute: AdminAdminBooksIndexRoute,
   AdminAdminReservationsIndexRoute: AdminAdminReservationsIndexRoute,
 }
 

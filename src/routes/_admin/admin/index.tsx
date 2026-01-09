@@ -16,7 +16,7 @@ export const Route = createFileRoute("/_admin/admin/")({
 
 function RouteComponent() {
 	return (
-		<main className="flex flex-col p-7 xl:px-24 bg-white gap-3">
+		<main className="flex flex-col p-7 xl:px-24 bg-white gap-3 h-dvh">
 			<h2 className="font-bold text-xl">Admin Dashboard</h2>
 
 			<section className="grid grid-cols-1 gap-3">
