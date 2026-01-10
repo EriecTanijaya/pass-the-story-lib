@@ -142,12 +142,39 @@ function BookDetailsDrawer() {
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-black/40" />
 
-        <Drawer.Content className="h-fit fixed bottom-0 left-0 right-0 bg-white p-4">
+        <Drawer.Content className="h-fit fixed bottom-0 left-0 right-0 bg-white p-4 rounded-t-lg">
           <Drawer.Handle className="mb-8" />
 
-          <Drawer.Title>this is title</Drawer.Title>
+          <div className="flex gap-3">
+            <img
+              src="/portrait.jpg"
+              alt="book"
+              className="w-1/2 object-cover"
+            />
 
-          <Drawer.Description>this is desc</Drawer.Description>
+            <div className="flex flex-col space-y-3">
+              <div>
+                <h3 className="font-semibold text-xl">1984</h3>
+                <p className="text-muted-foreground text-sm">George Orwell</p>
+              </div>
+
+              <div className="grid grid-cols-1 space-y-2">
+                <div className="flex flex-col">
+                  <p className="font-medium text-sm text-muted-foreground">
+                    Book ID
+                  </p>
+                  <p className="font-mono text-sm">123123</p>
+                </div>
+
+                <div className="flex flex-col">
+                  <p className="font-medium text-sm text-muted-foreground">
+                    Genre
+                  </p>
+                  <p className="text-sm">Fiction</p>
+                </div>
+              </div>
+            </div>
+          </div>
 
           {/*<Drawer.Close />*/}
         </Drawer.Content>
