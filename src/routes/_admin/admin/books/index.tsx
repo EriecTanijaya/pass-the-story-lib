@@ -172,6 +172,27 @@ function BookDetailsDrawer() {
                   </p>
                   <p className="text-sm">Fiction</p>
                 </div>
+
+                <div className="flex flex-col">
+                  <p className="font-medium text-sm text-muted-foreground">
+                    Condition
+                  </p>
+                  <p className="text-sm">Good</p>
+                </div>
+
+                <div className="flex flex-col">
+                  <p className="font-medium text-sm text-muted-foreground">
+                    Status
+                  </p>
+                  <p className="text-sm">To be Confirmed</p>
+                </div>
+
+                <div className="flex flex-col">
+                  <p className="font-medium text-sm text-muted-foreground">
+                    Donor
+                  </p>
+                  <p className="text-sm">Ivy</p>
+                </div>
               </div>
             </div>
           </div>
