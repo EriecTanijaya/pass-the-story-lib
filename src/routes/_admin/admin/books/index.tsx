@@ -195,6 +195,20 @@ function BookDetailsDrawer() {
 
 								<div className="flex flex-col">
 									<p className="font-medium text-sm text-muted-foreground">
+										Language
+									</p>
+									<p className="text-sm">English</p>
+								</div>
+
+								<div className="flex flex-col">
+									<p className="font-medium text-sm text-muted-foreground">
+										Tags
+									</p>
+									<p className="text-sm">Politic, Dystopian, Social Science</p>
+								</div>
+
+								<div className="flex flex-col">
+									<p className="font-medium text-sm text-muted-foreground">
 										Condition
 									</p>
 									<p className="text-sm">Good</p>

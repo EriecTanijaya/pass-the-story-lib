@@ -9,6 +9,12 @@ import {
 	UserIcon,
 } from "@phosphor-icons/react";
 import { createFileRoute } from "@tanstack/react-router";
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from "@/shared/components/ui/accordion";
 import { Badge } from "@/shared/components/ui/badge";
 import { Button } from "@/shared/components/ui/button";
 import {
@@ -69,14 +75,6 @@ function RouteComponent() {
 					</div>
 
 					<div className="flex items-center gap-3 bg-card rounded-lg p-4 border shadow-sm">
-						<MapPinIcon weight="bold" className="fill-primary size-6" />
-						<div className="flex flex-col">
-							<h3 className="text-muted-foreground">Location</h3>
-							<p className="font-semibold">Singapore</p>
-						</div>
-					</div>
-
-					<div className="flex items-center gap-3 bg-card rounded-lg p-4 border shadow-sm">
 						<BarcodeIcon weight="bold" className="fill-primary size-6" />
 						<div className="flex flex-col">
 							<h3 className="text-muted-foreground">ISBN</h3>
@@ -92,6 +90,35 @@ function RouteComponent() {
 						<Badge variant="secondary">Mystery</Badge>
 					</div>
 				</div>
+
+				<Separator />
+
+				<Accordion type="single" collapsible>
+					<AccordionItem value="synopsis">
+						<AccordionTrigger className="font-bold text-lg">
+							Synopsis
+						</AccordionTrigger>
+						<AccordionContent>
+							Venture into the hamowing world of George Orwell dystopian
+							masterpίcus, "1994." Set is the oppressive superstans of Corana,
+							thịt chilling nowed introduum readers to Winston Smith, a min
+							sruggling to maintain his humanity in a susiety zaled by the ever
+							watchtul Big Brother. At Winston becomes increasingly
+							disillusioned with the Party's brutal contrats every aspect of
+							life, he finds solace in a secret love atfair with the enigmatic
+							Julia, putting both of them in the cronheits of an unforgiving
+							regime 1966 aplies themes of totalitarianists, censorshup, and the
+							power of language, offering a stark warning against the danger of
+							abulum authority and the crusion of individual freedom. Wahus
+							prophene maghen and haunting mion of a world where the muth it
+							mangulated and dusent is crushed, Orwell's powerful narrative
+							chillling reminder of the fragility of freedom and the for
+							vigilance in the face of tyranny. Prepare to be challenged.
+							fimurived, and ultimame moved by the thought provoking clam that
+							continues to resonate with readers acrow generations.
+						</AccordionContent>
+					</AccordionItem>
+				</Accordion>
 
 				<Separator />
 
