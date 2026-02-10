@@ -3,13 +3,12 @@ import { Link, useLocation, useRouter } from "@tanstack/react-router";
 import { useState } from "react";
 import { authClient } from "@/app/auth/lib/betterAuth/authClient";
 import type { User } from "@/app/auth/model/user";
-import { useIsMobile } from "../hooks/use-mobile";
 import { Button } from "./ui/button";
 import {
 	NavigationMenu,
 	NavigationMenuItem,
 	NavigationMenuList,
-} from "./ui/navigation-menu";
+} from "./ui/navigation-menu.bak";
 import { Separator } from "./ui/separator";
 
 type NavMenu = {
@@ -24,7 +23,6 @@ type NavigationBarProps = {
 export function NavigationBar({ user }: NavigationBarProps) {
 	const router = useRouter();
 	const location = useLocation();
-	const isMobile = useIsMobile();
 	const [isOpen, setIsOpen] = useState(false);
 
 	const memberNavMenus: NavMenu[] = [
@@ -69,7 +67,7 @@ export function NavigationBar({ user }: NavigationBarProps) {
 
 	return (
 		<header className="bg-background/80 sticky top-0 z-10 backdrop-blur-md border-b border-b-muted-foreground/50 px-7 xl:px-24">
-			<NavigationMenu viewport={isMobile} className="h-16">
+			<NavigationMenu className="h-16 justify-between max-w-full">
 				<Link to="/" className="flex items-center gap-3">
 					<img src="/pts-logo.png" alt="logo" className="size-8" />
 					<span className="font-bold text-lg leading-5">
@@ -77,7 +75,7 @@ export function NavigationBar({ user }: NavigationBarProps) {
 					</span>
 				</Link>
 
-				<NavigationMenuList className="hidden md:flex justify-between">
+				<NavigationMenuList className="hidden md:flex ">
 					{(() => {
 						const navMenus =
 							user?.role === "admin" ? adminNavMenus : memberNavMenus;
@@ -103,7 +101,7 @@ export function NavigationBar({ user }: NavigationBarProps) {
 				{(() => {
 					if (!user) {
 						return (
-							<Button variant="ghost" className="hidden md:flex" asChild>
+							<Button variant="ghost" className="hidden md:flex">
 								<Link
 									to="/auth"
 									search={{
@@ -184,7 +182,7 @@ export function NavigationBar({ user }: NavigationBarProps) {
 						Logout
 					</Button>
 				) : (
-					<Button asChild>
+					<Button>
 						<Link
 							to="/auth"
 							search={{

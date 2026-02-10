@@ -9,7 +9,7 @@ export function SubscribeButton({ label }: { label: string }) {
 		<form.Subscribe selector={(state) => state.isSubmitting}>
 			{(isSubmitting) => {
 				return (
-					<Button className="w-full mt-7" disabled={isSubmitting}>
+					<Button type="submit" className="w-full mt-7" disabled={isSubmitting}>
 						{(() => {
 							if (isSubmitting) {
 								return (

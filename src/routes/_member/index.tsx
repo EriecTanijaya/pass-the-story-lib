@@ -101,7 +101,6 @@ function App() {
 						variant="secondary"
 						size="lg"
 						className="bg-primary-foreground text-primary font-semibold shadow-lg w-full"
-						asChild
 					>
 						<Link to="/books">Browse Books</Link>
 					</Button>
@@ -126,7 +125,8 @@ function App() {
 
 			<section>
 				<h2 className="text-xl font-bold ml-7 mb-9 xl:ml-0">Featured Books</h2>
-				<div className="flex overflow-auto gap-3">
+
+				<div className="flex overflow-x-auto gap-3 pb-1">
 					{books.map((book) => (
 						<BookCard key={book.bookName} {...book} variant="carousel" />
 					))}
@@ -206,7 +206,7 @@ function App() {
 						</div>
 					</CardContent>
 					<CardFooter className="gap-4">
-						<Button asChild>
+						<Button>
 							<Link to="/books">Reserve</Link>
 						</Button>
 					</CardFooter>
@@ -225,7 +225,7 @@ interface HowToCardProps {
 
 function HowToCard({ details, StepIcon, title, stepNum }: HowToCardProps) {
 	return (
-		<Card className="relative">
+		<Card className="relative overflow-visible">
 			<Badge className="absolute -top-3 -left-3 size-8 text-sm font-bold">
 				{stepNum}
 			</Badge>

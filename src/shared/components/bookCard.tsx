@@ -13,17 +13,20 @@ import {
 	CardTitle,
 } from "./ui/card";
 
-const bookCardVariants = cva("flex flex-col bg-white pt-0 w-full", {
-	variants: {
-		variant: {
-			default: "",
-			carousel: "first:ml-7 last:mr-7 xl:first:ml-0 xl:last:mr-0",
+const bookCardVariants = cva(
+	"w-full max-w-sm pt-0 flex-shrink-0 overflow-hidden",
+	{
+		variants: {
+			variant: {
+				default: "",
+				carousel: "first:ml-7 last:mr-7 xl:first:ml-0 xl:last:mr-0",
+			},
+		},
+		defaultVariants: {
+			variant: "default",
 		},
 	},
-	defaultVariants: {
-		variant: "default",
-	},
-});
+);
 
 type BookCardProps = {
 	bookName: string;
@@ -46,23 +49,23 @@ export function BookCard({
 }: BookCardProps) {
 	return (
 		<Card className={cn(bookCardVariants({ variant }))}>
-			<CardHeader className="p-0 relative">
-				{thumbnailUrl ? (
-					<img
-						src={thumbnailUrl}
-						alt="book"
-						className="w-full h-74 object-cover rounded-t-xl"
-					/>
-				) : (
-					<div className="h-74 flex items-center justify-center p-12 bg-book-card-thumbnail rounded-t-lg">
-						<BookOpenIcon className="size-20 fill-primary" />
-					</div>
-				)}
-			</CardHeader>
-			<CardContent className="flex flex-col gap-2">
+			{thumbnailUrl ? (
+				<img
+					src={thumbnailUrl}
+					alt="book"
+					className="aspect-2/3 h-74 object-cover"
+				/>
+			) : (
+				<div className="aspect-2/3 h-74 flex items-center justify-center p-12 bg-book-card-thumbnail">
+					<BookOpenIcon className="size-20 fill-primary" />
+				</div>
+			)}
+
+			<CardHeader>
 				<CardTitle>{bookName}</CardTitle>
 				<CardDescription>{authorName}</CardDescription>
-
+			</CardHeader>
+			<CardContent className="flex flex-col gap-2">
 				<div className="flex gap-2 text-xs text-muted-foreground">
 					<span className="flex gap-1 items-center">
 						<TagIcon className="h-3 w-3 fill-gray-800" />
@@ -94,7 +97,7 @@ export function BookCard({
 			<CardFooter className="gap-4">
 				<Button className="flex-1">Reserve</Button>
 
-				<Button variant="outline" className="flex-1" asChild>
+				<Button variant="outline" className="flex-1">
 					<Link to="/books/1">View Details</Link>
 				</Button>
 			</CardFooter>

@@ -83,21 +83,21 @@ const AdminAdminBooksIndexRoute = AdminAdminBooksIndexRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof MemberIndexRoute
   '/about': typeof MemberAboutRoute
   '/auth/confirm-password': typeof AuthConfirmPasswordRoute
-  '/': typeof MemberIndexRoute
-  '/auth': typeof AuthIndexRoute
+  '/auth/': typeof AuthIndexRoute
   '/books/$bookId': typeof MemberBooksBookIdRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
-  '/admin': typeof AdminAdminIndexRoute
-  '/books': typeof MemberBooksIndexRoute
-  '/admin/books': typeof AdminAdminBooksIndexRoute
-  '/admin/reservations': typeof AdminAdminReservationsIndexRoute
+  '/admin/': typeof AdminAdminIndexRoute
+  '/books/': typeof MemberBooksIndexRoute
+  '/admin/books/': typeof AdminAdminBooksIndexRoute
+  '/admin/reservations/': typeof AdminAdminReservationsIndexRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof MemberIndexRoute
   '/about': typeof MemberAboutRoute
   '/auth/confirm-password': typeof AuthConfirmPasswordRoute
-  '/': typeof MemberIndexRoute
   '/auth': typeof AuthIndexRoute
   '/books/$bookId': typeof MemberBooksBookIdRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -124,21 +124,21 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
     | '/about'
     | '/auth/confirm-password'
-    | '/'
-    | '/auth'
+    | '/auth/'
     | '/books/$bookId'
     | '/api/auth/$'
-    | '/admin'
-    | '/books'
-    | '/admin/books'
-    | '/admin/reservations'
+    | '/admin/'
+    | '/books/'
+    | '/admin/books/'
+    | '/admin/reservations/'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/'
     | '/about'
     | '/auth/confirm-password'
-    | '/'
     | '/auth'
     | '/books/$bookId'
     | '/api/auth/$'
@@ -175,21 +175,21 @@ declare module '@tanstack/react-router' {
     '/_member': {
       id: '/_member'
       path: ''
-      fullPath: ''
+      fullPath: '/'
       preLoaderRoute: typeof MemberRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_admin': {
       id: '/_admin'
       path: ''
-      fullPath: ''
+      fullPath: '/'
       preLoaderRoute: typeof AdminRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth/': {
       id: '/auth/'
       path: '/auth'
-      fullPath: '/auth'
+      fullPath: '/auth/'
       preLoaderRoute: typeof AuthIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
@@ -217,14 +217,14 @@ declare module '@tanstack/react-router' {
     '/_member/books/': {
       id: '/_member/books/'
       path: '/books'
-      fullPath: '/books'
+      fullPath: '/books/'
       preLoaderRoute: typeof MemberBooksIndexRouteImport
       parentRoute: typeof MemberRouteRoute
     }
     '/_admin/admin/': {
       id: '/_admin/admin/'
       path: '/admin'
-      fullPath: '/admin'
+      fullPath: '/admin/'
       preLoaderRoute: typeof AdminAdminIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
@@ -245,14 +245,14 @@ declare module '@tanstack/react-router' {
     '/_admin/admin/reservations/': {
       id: '/_admin/admin/reservations/'
       path: '/admin/reservations'
-      fullPath: '/admin/reservations'
+      fullPath: '/admin/reservations/'
       preLoaderRoute: typeof AdminAdminReservationsIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
     '/_admin/admin/books/': {
       id: '/_admin/admin/books/'
       path: '/admin/books'
-      fullPath: '/admin/books'
+      fullPath: '/admin/books/'
       preLoaderRoute: typeof AdminAdminBooksIndexRouteImport
       parentRoute: typeof AdminRouteRoute
     }
