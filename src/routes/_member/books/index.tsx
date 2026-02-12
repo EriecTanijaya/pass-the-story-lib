@@ -1,7 +1,13 @@
-import { FunnelIcon, MagnifyingGlassIcon } from "@phosphor-icons/react";
+import {
+  BookIcon,
+  FunnelIcon,
+  MagnifyingGlassIcon,
+  PenIcon,
+} from "@phosphor-icons/react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { BookCard } from "@/shared/components/bookCard";
+import { Drawer } from "@/shared/components/drawer";
 import { Button } from "@/shared/components/ui/button";
 import {
   InputGroup,
@@ -17,7 +23,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/components/ui/select";
-import { Drawer } from "@/shared/components/drawer";
+import {
+  ToggleGroup,
+  ToggleGroupItem,
+} from "@/shared/components/ui/toggle-group";
+import { Field, FieldLabel } from "@/shared/components/ui/field";
 
 export const Route = createFileRoute("/_member/books/")({
   component: RouteComponent,
@@ -220,7 +230,33 @@ function FilterDrawer() {
         </Button>
       }
     >
-      <p>wadwadawdaw</p>
+      <div className="flex flex-col gap-4">
+        <Field>
+          <FieldLabel className="font-medium">Sort By</FieldLabel>
+          <ToggleGroup variant="outline" spacing={2}>
+            <ToggleGroupItem value="most-reserved" className="text-sm">
+              Most Reserved
+            </ToggleGroupItem>
+            <ToggleGroupItem value="recent-added" className="text-sm">
+              Recent Added
+            </ToggleGroupItem>
+          </ToggleGroup>
+        </Field>
+
+        {/** todo: integrate this to the filters, refactor the drawer to use the shadcn one */}
+        <Field>
+          <FieldLabel className="font-medium">Genres</FieldLabel>
+          <ToggleGroup variant="outline" spacing={2} multiple>
+            <ToggleGroupItem value="most-reserved" className="text-sm">
+              Most Reserved
+            </ToggleGroupItem>
+            <ToggleGroupItem value="recent-added" className="text-sm">
+              Recent Added
+            </ToggleGroupItem>
+          </ToggleGroup>{" "}
+          q
+        </Field>
+      </div>
     </Drawer>
   );
 }
