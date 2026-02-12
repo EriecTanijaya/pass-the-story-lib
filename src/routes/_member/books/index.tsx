@@ -1,4 +1,4 @@
-import { MagnifyingGlassIcon } from "@phosphor-icons/react";
+import { FunnelIcon, MagnifyingGlassIcon } from "@phosphor-icons/react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { BookCard } from "@/shared/components/bookCard";
@@ -17,6 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/components/ui/select";
+import { Drawer } from "@/shared/components/drawer";
 
 export const Route = createFileRoute("/_member/books/")({
   component: RouteComponent,
@@ -86,7 +87,8 @@ function RouteComponent() {
     <main className="flex flex-col pt-7 xl:px-24 bg-white">
       <div className="px-7 pb-7 xl:px-0">
         <h2 className="font-bold text-xl">Browse Books</h2>
-        <div className="flex flex-col mt-7 gap-2">
+
+        <div className="mt-7 flex gap-2 justify-between items-center">
           <InputGroup className="bg-white">
             <InputGroupInput
               className="text-sm"
@@ -98,6 +100,28 @@ function RouteComponent() {
               <MagnifyingGlassIcon />
             </InputGroupAddon>
           </InputGroup>
+
+          <FilterDrawer />
+        </div>
+
+        <div className="flex flex-col mt-7 gap-2">
+          <div className="flex gap-2 justify-between items-center">
+            <InputGroup className="bg-white">
+              <InputGroupInput
+                className="text-sm"
+                placeholder="Search by title, author, or ISBN..."
+                onChange={(e) => updateSearchQuery(e.target.value)}
+                value={filters.search}
+              />
+              <InputGroupAddon>
+                <MagnifyingGlassIcon />
+              </InputGroupAddon>
+            </InputGroup>
+
+            <Button size="icon" variant="outline">
+              <FunnelIcon className="size-6" />
+            </Button>
+          </div>
 
           <Select
             items={genres}
@@ -183,5 +207,20 @@ function RouteComponent() {
         />
       </section>
     </main>
+  );
+}
+
+function FilterDrawer() {
+  // https://dribbble.com/shots/25746589-E-Commerce-Search-Filter-Mobile-Screen
+  return (
+    <Drawer
+      trigger={
+        <Button size="icon" variant="outline">
+          <FunnelIcon className="size-6" />
+        </Button>
+      }
+    >
+      <p>wadwadawdaw</p>
+    </Drawer>
   );
 }
