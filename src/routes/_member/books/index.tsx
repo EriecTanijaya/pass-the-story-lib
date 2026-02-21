@@ -24,10 +24,13 @@ import {
   SelectValue,
 } from "@/shared/components/ui/select";
 import {
-  ToggleGroup,
-  ToggleGroupItem,
-} from "@/shared/components/ui/toggle-group";
-import { Field, FieldLabel } from "@/shared/components/ui/field";
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/shared/components/ui/drawer";
 
 export const Route = createFileRoute("/_member/books/")({
   component: RouteComponent,
@@ -223,40 +226,28 @@ function RouteComponent() {
 function FilterDrawer() {
   // https://dribbble.com/shots/25746589-E-Commerce-Search-Filter-Mobile-Screen
   return (
-    <Drawer
-      trigger={
+    <Drawer>
+      <DrawerTrigger>
         <Button size="icon" variant="outline">
           <FunnelIcon className="size-6" />
         </Button>
-      }
-    >
-      <div className="flex flex-col gap-4">
-        <Field>
-          <FieldLabel className="font-medium">Sort By</FieldLabel>
-          <ToggleGroup variant="outline" spacing={2}>
-            <ToggleGroupItem value="most-reserved" className="text-sm">
-              Most Reserved
-            </ToggleGroupItem>
-            <ToggleGroupItem value="recent-added" className="text-sm">
-              Recent Added
-            </ToggleGroupItem>
-          </ToggleGroup>
-        </Field>
-
-        {/** todo: integrate this to the filters, refactor the drawer to use the shadcn one */}
-        <Field>
-          <FieldLabel className="font-medium">Genres</FieldLabel>
-          <ToggleGroup variant="outline" spacing={2} multiple>
-            <ToggleGroupItem value="most-reserved" className="text-sm">
-              Most Reserved
-            </ToggleGroupItem>
-            <ToggleGroupItem value="recent-added" className="text-sm">
-              Recent Added
-            </ToggleGroupItem>
-          </ToggleGroup>{" "}
-          q
-        </Field>
-      </div>
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>hihih</DrawerTitle>
+          <DrawerDescription>hohohoho</DrawerDescription>
+        </DrawerHeader>
+      </DrawerContent>
     </Drawer>
+
+    // <Drawer
+    // 	trigger={
+    // 		<Button size="icon" variant="outline">
+    // 			<FunnelIcon className="size-6" />
+    // 		</Button>
+    // 	}
+    // >
+    // 	<p>wadwadawdaw</p>
+    // </Drawer>
   );
 }

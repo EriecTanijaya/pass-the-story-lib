@@ -4,7 +4,7 @@ import { cn } from "@/shared/lib/utils";
 
 function Label({ className, ...props }: React.ComponentProps<"label">) {
 	return (
-		// biome-ignore lint/a11y/noLabelWithoutControl: <explanation>
+		// biome-ignore lint/a11y/noLabelWithoutControl: from shadcn
 		<label
 			data-slot="label"
 			className={cn(
