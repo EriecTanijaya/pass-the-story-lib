@@ -1,253 +1,247 @@
-import {
-  BookIcon,
-  FunnelIcon,
-  MagnifyingGlassIcon,
-  PenIcon,
-} from "@phosphor-icons/react";
+import { FunnelIcon, MagnifyingGlassIcon } from "@phosphor-icons/react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { BookCard } from "@/shared/components/bookCard";
-import { Drawer } from "@/shared/components/drawer";
 import { Button } from "@/shared/components/ui/button";
 import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
+	Drawer,
+	DrawerContent,
+	DrawerDescription,
+	DrawerHeader,
+	DrawerTitle,
+	DrawerTrigger,
+} from "@/shared/components/ui/drawer";
+import {
+	InputGroup,
+	InputGroupAddon,
+	InputGroupInput,
 } from "@/shared/components/ui/input-group";
 import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectItem,
+	SelectLabel,
+	SelectTrigger,
+	SelectValue,
 } from "@/shared/components/ui/select";
-import {
-  Drawer,
-  DrawerContent,
-  DrawerDescription,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/shared/components/ui/drawer";
 
 export const Route = createFileRoute("/_member/books/")({
-  component: RouteComponent,
+	component: RouteComponent,
 });
 
 type SelectVal = {
-  label: string;
-  value: string;
+	label: string;
+	value: string;
 };
 
 const genres: SelectVal[] = [
-  { label: "Mystery", value: "mystery" },
-  { label: "Crime", value: "crime" },
+	{ label: "Mystery", value: "mystery" },
+	{ label: "Crime", value: "crime" },
 ];
 
 const languages: SelectVal[] = [
-  {
-    label: "Indonesia",
-    value: "indonesia",
-  },
-  {
-    label: "English",
-    value: "english",
-  },
+	{
+		label: "Indonesia",
+		value: "indonesia",
+	},
+	{
+		label: "English",
+		value: "english",
+	},
 ];
 
 const defaultFilters = {
-  search: "",
-  genres: [] as string[],
-  language: "",
+	search: "",
+	genres: [] as string[],
+	language: "",
 };
 
 function RouteComponent() {
-  const [filters, setFilters] = useState(defaultFilters);
+	const [filters, setFilters] = useState(defaultFilters);
 
-  function updateSearchQuery(searchQuery: string) {
-    setFilters({
-      ...filters,
-      search: searchQuery,
-    });
-  }
+	function updateSearchQuery(searchQuery: string) {
+		setFilters({
+			...filters,
+			search: searchQuery,
+		});
+	}
 
-  function updateGenreQuery(genres: string[]) {
-    setFilters({
-      ...filters,
-      genres,
-    });
-  }
+	function updateGenreQuery(genres: string[]) {
+		setFilters({
+			...filters,
+			genres,
+		});
+	}
 
-  function updateLanguageQuery(lang: string) {
-    setFilters({
-      ...filters,
-      language: lang,
-    });
-  }
+	function updateLanguageQuery(lang: string) {
+		setFilters({
+			...filters,
+			language: lang,
+		});
+	}
 
-  function deleteFilters() {
-    setFilters(defaultFilters);
-  }
+	function deleteFilters() {
+		setFilters(defaultFilters);
+	}
 
-  const hasFilter =
-    filters.search !== "" ||
-    filters.genres.length !== 0 ||
-    filters.language !== "";
+	const hasFilter =
+		filters.search !== "" ||
+		filters.genres.length !== 0 ||
+		filters.language !== "";
 
-  return (
-    <main className="flex flex-col pt-7 xl:px-24 bg-white">
-      <div className="px-7 pb-7 xl:px-0">
-        <h2 className="font-bold text-xl">Browse Books</h2>
+	return (
+		<main className="flex flex-col pt-7 xl:px-24 bg-white">
+			<div className="px-7 pb-7 xl:px-0">
+				<h2 className="font-bold text-xl">Browse Books</h2>
 
-        <div className="mt-7 flex gap-2 justify-between items-center">
-          <InputGroup className="bg-white">
-            <InputGroupInput
-              className="text-sm"
-              placeholder="Search by title, author, or ISBN..."
-              onChange={(e) => updateSearchQuery(e.target.value)}
-              value={filters.search}
-            />
-            <InputGroupAddon>
-              <MagnifyingGlassIcon />
-            </InputGroupAddon>
-          </InputGroup>
+				<div className="mt-7 flex gap-2 justify-between items-center">
+					<InputGroup className="bg-white">
+						<InputGroupInput
+							className="text-sm"
+							placeholder="Search by title, author, or ISBN..."
+							onChange={(e) => updateSearchQuery(e.target.value)}
+							value={filters.search}
+						/>
+						<InputGroupAddon>
+							<MagnifyingGlassIcon />
+						</InputGroupAddon>
+					</InputGroup>
 
-          <FilterDrawer />
-        </div>
+					<FilterDrawer />
+				</div>
 
-        <div className="flex flex-col mt-7 gap-2">
-          <div className="flex gap-2 justify-between items-center">
-            <InputGroup className="bg-white">
-              <InputGroupInput
-                className="text-sm"
-                placeholder="Search by title, author, or ISBN..."
-                onChange={(e) => updateSearchQuery(e.target.value)}
-                value={filters.search}
-              />
-              <InputGroupAddon>
-                <MagnifyingGlassIcon />
-              </InputGroupAddon>
-            </InputGroup>
+				<div className="flex flex-col mt-7 gap-2">
+					<div className="flex gap-2 justify-between items-center">
+						<InputGroup className="bg-white">
+							<InputGroupInput
+								className="text-sm"
+								placeholder="Search by title, author, or ISBN..."
+								onChange={(e) => updateSearchQuery(e.target.value)}
+								value={filters.search}
+							/>
+							<InputGroupAddon>
+								<MagnifyingGlassIcon />
+							</InputGroupAddon>
+						</InputGroup>
 
-            <Button size="icon" variant="outline">
-              <FunnelIcon className="size-6" />
-            </Button>
-          </div>
+						<Button size="icon" variant="outline">
+							<FunnelIcon className="size-6" />
+						</Button>
+					</div>
 
-          <Select
-            items={genres}
-            multiple
-            onValueChange={(selectedGenres) => updateGenreQuery(selectedGenres)}
-            value={filters.genres}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="All Genres" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Genres</SelectLabel>
-                {genres.map((genre) => (
-                  <SelectItem key={genre.value} value={genre.value}>
-                    {genre.label}
-                  </SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+					<Select
+						items={genres}
+						multiple
+						onValueChange={(selectedGenres) => updateGenreQuery(selectedGenres)}
+						value={filters.genres}
+					>
+						<SelectTrigger>
+							<SelectValue placeholder="All Genres" />
+						</SelectTrigger>
+						<SelectContent>
+							<SelectGroup>
+								<SelectLabel>Genres</SelectLabel>
+								{genres.map((genre) => (
+									<SelectItem key={genre.value} value={genre.value}>
+										{genre.label}
+									</SelectItem>
+								))}
+							</SelectGroup>
+						</SelectContent>
+					</Select>
 
-          <Select
-            onValueChange={(value) => {
-              if (!value) return;
+					<Select
+						onValueChange={(value) => {
+							if (!value) return;
 
-              updateLanguageQuery(value);
-            }}
-            value={filters.language}
-            items={languages}
-          >
-            <SelectTrigger className="bg-white">
-              <SelectValue placeholder="All Languages" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Languages</SelectLabel>
+							updateLanguageQuery(value);
+						}}
+						value={filters.language}
+						items={languages}
+					>
+						<SelectTrigger className="bg-white">
+							<SelectValue placeholder="All Languages" />
+						</SelectTrigger>
+						<SelectContent>
+							<SelectGroup>
+								<SelectLabel>Languages</SelectLabel>
 
-                {languages.map((lang) => (
-                  <SelectItem key={lang.value} value={lang.value}>
-                    {lang.label}
-                  </SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+								{languages.map((lang) => (
+									<SelectItem key={lang.value} value={lang.value}>
+										{lang.label}
+									</SelectItem>
+								))}
+							</SelectGroup>
+						</SelectContent>
+					</Select>
 
-          {hasFilter && (
-            <Button
-              variant="destructive"
-              size="sm"
-              onClick={() => deleteFilters()}
-            >
-              Clear Filters
-            </Button>
-          )}
-        </div>
-      </div>
+					{hasFilter && (
+						<Button
+							variant="destructive"
+							size="sm"
+							onClick={() => deleteFilters()}
+						>
+							Clear Filters
+						</Button>
+					)}
+				</div>
+			</div>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-7 pb-12 gap-7 xl:px-0">
-        <BookCard
-          authorName="joji"
-          bookName="wormhole"
-          genre="mystery"
-          language="english"
-          tags={["gore"]}
-        />
-        <BookCard
-          authorName="joji"
-          bookName="wormhole"
-          genre="mystery"
-          language="english"
-          tags={["gore"]}
-          thumbnailUrl="landscape.jpg"
-        />
-        <BookCard
-          authorName="joji"
-          bookName="wormhole"
-          genre="mystery"
-          language="english"
-          tags={["gore"]}
-          thumbnailUrl="portrait.jpg"
-        />
-      </section>
-    </main>
-  );
+			<section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-7 pb-12 gap-7 xl:px-0">
+				<BookCard
+					authorName="joji"
+					bookName="wormhole"
+					genre="mystery"
+					language="english"
+					tags={["gore"]}
+				/>
+				<BookCard
+					authorName="joji"
+					bookName="wormhole"
+					genre="mystery"
+					language="english"
+					tags={["gore"]}
+					thumbnailUrl="landscape.jpg"
+				/>
+				<BookCard
+					authorName="joji"
+					bookName="wormhole"
+					genre="mystery"
+					language="english"
+					tags={["gore"]}
+					thumbnailUrl="portrait.jpg"
+				/>
+			</section>
+		</main>
+	);
 }
 
 function FilterDrawer() {
-  // https://dribbble.com/shots/25746589-E-Commerce-Search-Filter-Mobile-Screen
-  return (
-    <Drawer>
-      <DrawerTrigger>
-        <Button size="icon" variant="outline">
-          <FunnelIcon className="size-6" />
-        </Button>
-      </DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>hihih</DrawerTitle>
-          <DrawerDescription>hohohoho</DrawerDescription>
-        </DrawerHeader>
-      </DrawerContent>
-    </Drawer>
+	// https://dribbble.com/shots/25746589-E-Commerce-Search-Filter-Mobile-Screen
+	return (
+		<Drawer>
+			<DrawerTrigger>
+				<Button size="icon" variant="outline">
+					<FunnelIcon className="size-6" />
+				</Button>
+			</DrawerTrigger>
+			<DrawerContent>
+				<DrawerHeader>
+					<DrawerTitle>hihih</DrawerTitle>
+					<DrawerDescription>hohohoho</DrawerDescription>
+				</DrawerHeader>
+			</DrawerContent>
+		</Drawer>
 
-    // <Drawer
-    // 	trigger={
-    // 		<Button size="icon" variant="outline">
-    // 			<FunnelIcon className="size-6" />
-    // 		</Button>
-    // 	}
-    // >
-    // 	<p>wadwadawdaw</p>
-    // </Drawer>
-  );
+		// <Drawer
+		// 	trigger={
+		// 		<Button size="icon" variant="outline">
+		// 			<FunnelIcon className="size-6" />
+		// 		</Button>
+		// 	}
+		// >
+		// 	<p>wadwadawdaw</p>
+		// </Drawer>
+	);
 }
