@@ -236,7 +236,7 @@ function FilterDrawer() {
           <DrawerTitle>Filters</DrawerTitle>
         </DrawerHeader>
         <div className="p-4">
-          <div>
+          <div className="flex flex-col gap-2">
             <h3>Genres</h3>
             <ToggleGroup variant="outline" multiple spacing={2}>
               <ToggleGroupItem>Mystery</ToggleGroupItem>
