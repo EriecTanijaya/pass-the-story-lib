@@ -1,10 +1,10 @@
-import { user as userTable } from "@/app/auth/lib/betterAuth/authTable";
-import { db } from "@/shared/lib/db";
 import { createServerFn } from "@tanstack/react-start";
 import { type } from "arktype";
 import { eq } from "drizzle-orm";
+import { user as userTable } from "@/app/auth/lib/betterAuth/authTable";
+import type { Role } from "@/app/auth/model/user";
+import { db } from "@/shared/lib/db";
 import { getAuthSession } from "../../getAuthSession/api/getAuthSession";
-import { Role } from "@/app/auth/model/user";
 
 const signInInput = type({
   phoneNumber: "string",
@@ -25,8 +25,6 @@ export const signInApi = createServerFn({ method: "POST" })
         error: "Incorrect phone number or password",
       };
     }
-
-    console.log({ users });
 
     const user = users[0];
 

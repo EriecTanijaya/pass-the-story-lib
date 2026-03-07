@@ -83,7 +83,7 @@ const howToSteps: Omit<HowToCardProps, "stepNum">[] = [
 
 function App() {
 	return (
-		<main className="flex flex-col gap-6 bg-white xl:px-24">
+		<main className="flex flex-col gap-7 bg-white xl:px-24">
 			<section className="flex flex-col bg-primary px-7 gap-3 items-center py-20">
 				<div className="flex rounded-full text-sm px-4 py-2 bg-primary-foreground/10 text-primary-foreground/90 mb-9 gap-2 items-center">
 					<SparkleIcon className="size-4" />
@@ -124,7 +124,7 @@ function App() {
 			</section>
 
 			<section>
-				<h2 className="text-xl font-bold ml-7 mb-9 xl:ml-0">Featured Books</h2>
+				<h2 className="text-xl font-bold ml-7 mb-5 xl:ml-0">Featured Books</h2>
 
 				<div className="flex overflow-x-auto gap-3 pb-1">
 					{books.map((book) => (
@@ -134,7 +134,7 @@ function App() {
 			</section>
 
 			<section className="px-7 xl:px-0" id="how-it-works">
-				<h2 className="text-xl font-bold mb-9">How It Works</h2>
+				<h2 className="text-xl font-bold mb-7">How It Works</h2>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-7">
 					{howToSteps.map((step, idx) => (
 						<HowToCard key={step.title} {...step} stepNum={idx + 1} />
@@ -143,7 +143,7 @@ function App() {
 			</section>
 
 			<section className="px-7 pb-12 xl:px-0">
-				<h2 className="text-xl font-bold mb-9">Upcoming Meetup</h2>
+				<h2 className="text-xl font-bold mb-5">Upcoming Meetup</h2>
 
 				<Card className="md:w-96">
 					<CardHeader>

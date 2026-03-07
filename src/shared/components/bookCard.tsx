@@ -13,7 +13,7 @@ import {
 	CardTitle,
 } from "./ui/card";
 
-const bookCardVariants = cva(" pt-0 flex-shrink-0 overflow-hidden", {
+const bookCardVariants = cva("pt-0 flex-shrink-0 overflow-hidden", {
 	variants: {
 		variant: {
 			default: "",
