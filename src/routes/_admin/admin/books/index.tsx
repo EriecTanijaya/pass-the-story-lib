@@ -1,5 +1,5 @@
 import { EyeIcon, MagnifyingGlassIcon } from "@phosphor-icons/react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
 	Accordion,
 	AccordionContent,
@@ -70,7 +70,9 @@ function RouteComponent() {
 				</div>
 			</div>
 
-			<Button className="mb-5 w-full">Add Book</Button>
+			<Button className="mb-5 w-full">
+				<Link to="/admin/books/create-book">Add Book</Link>
+			</Button>
 
 			<section className="space-y-3">
 				<BookCard

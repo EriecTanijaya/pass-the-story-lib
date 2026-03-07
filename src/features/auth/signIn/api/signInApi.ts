@@ -7,37 +7,37 @@ import { db } from "@/shared/lib/db";
 import { getAuthSession } from "../../getAuthSession/api/getAuthSession";
 
 const signInInput = type({
-  phoneNumber: "string",
-  password: "string",
+	phoneNumber: "string",
+	password: "string",
 });
 
 export const signInApi = createServerFn({ method: "POST" })
-  .inputValidator(signInInput)
-  .handler(async ({ data }) => {
-    const users = await db
-      .select()
-      .from(userTable)
-      .where(eq(userTable.phoneNumber, data.phoneNumber));
+	.inputValidator(signInInput)
+	.handler(async ({ data }) => {
+		const users = await db
+			.select()
+			.from(userTable)
+			.where(eq(userTable.phoneNumber, data.phoneNumber));
 
-    if (users.length === 0) {
-      return {
-        success: false,
-        error: "Incorrect phone number or password",
-      };
-    }
+		if (users.length === 0) {
+			return {
+				success: false,
+				error: "Incorrect phone number or password",
+			};
+		}
 
-    const user = users[0];
+		const user = users[0];
 
-    const session = await getAuthSession();
+		const session = await getAuthSession();
 
-    await session.update({
-      id: user.id,
-      name: user.name,
-      profileImageUrl: user.image ?? "",
-      role: user.role as Role,
-    });
+		await session.update({
+			id: user.id,
+			name: user.name,
+			profileImageUrl: user.image ?? "",
+			role: user.role as Role,
+		});
 
-    return {
-      success: true,
-    };
-  });
+		return {
+			success: true,
+		};
+	});
