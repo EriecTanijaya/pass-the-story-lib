@@ -1,3 +1,5 @@
+import { formOptions } from "@tanstack/react-form";
+import { createFileRoute } from "@tanstack/react-router";
 import { useAppForm } from "@/features/auth/model/form";
 import {
   Combobox,
@@ -5,26 +7,15 @@ import {
   ComboboxChips,
   ComboboxChipsInput,
   ComboboxContent,
-  ComboboxEmpty,
-  ComboboxInput,
   ComboboxItem,
   ComboboxList,
   ComboboxValue,
   useComboboxAnchor,
 } from "@/shared/components/ui/combobox";
 import { Field, FieldGroup, FieldLabel } from "@/shared/components/ui/field";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/shared/components/ui/select";
 import { Textarea } from "@/shared/components/ui/textarea";
-import { formOptions } from "@tanstack/react-form";
-import { createFileRoute } from "@tanstack/react-router";
+import { Input } from "@/shared/components/ui/input";
+import { Button } from "@/shared/components/ui/button";
 import { useState } from "react";
 
 export const Route = createFileRoute("/_admin/admin/books/create-book/")({
@@ -64,7 +55,7 @@ function RouteComponent() {
     ...formOpts,
   });
 
-  const frameworks = [
+  const _frameworks = [
     "Next.js",
     "SvelteKit",
     "Nuxt.js",
@@ -73,7 +64,7 @@ function RouteComponent() {
   ] as const;
 
   return (
-    <main className="px-7 pt-7 xl:px-24 bg-white h-dvh">
+    <main className="px-7 pt-7 xl:px-24 bg-white">
       <h2 className="font-bold text-xl mb-7">Add Book</h2>
 
       {/**
@@ -99,7 +90,7 @@ function RouteComponent() {
 
           <form.AppField
             name="genres"
-            children={(field) => {
+            children={(_field) => {
               const items = [
                 {
                   label: "Horror",
@@ -157,11 +148,30 @@ function RouteComponent() {
 
           <form.AppField
             name="conditions"
-            children={(field) => (
-              <Field>
-                <FieldLabel>Conditions</FieldLabel>
-              </Field>
-            )}
+            mode="array"
+            children={(field) => {
+              const [condition, setCondition] = useState("");
+
+              return (
+                <Field>
+                  <FieldLabel>Conditions</FieldLabel>
+                  {field.state.value.map((value, i) => {
+                    return <div key={i}>{value}</div>;
+                  })}
+
+                  <Field orientation="horizontal">
+                    <Input
+                      type="text"
+                      value={condition}
+                      onChange={(e) => setCondition(e.target.value)}
+                    />
+                    <Button onClick={() => field.pushValue(condition)}>
+                      Add
+                    </Button>
+                  </Field>
+                </Field>
+              );
+            }}
           />
 
           <form.AppField
