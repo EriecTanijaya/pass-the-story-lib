@@ -77,12 +77,12 @@ function RouteComponent() {
       <section className="space-y-3">
         <BookCard
           id="123"
-          condition="Fair"
-          genre="Psychology"
+          genres={["Fiction", "Politic", "Horror"]}
           name="What is Happines"
           status="To be Confirmed"
           donor="George"
           isbn="123123123"
+          lang="English"
         />
       </section>
     </main>
@@ -92,21 +92,21 @@ function RouteComponent() {
 type BookCardProps = {
   id: string;
   name: string;
-  genre: string;
-  condition: string;
+  genres: string[];
   status: string;
   donor: string;
   isbn: string;
+  lang: string;
 };
 
 function BookCard({
   id,
-  condition,
-  genre,
+  genres,
   name,
   status,
   donor,
   isbn,
+  lang,
 }: BookCardProps) {
   return (
     <Card className="py-2 gap-0">
@@ -129,12 +129,8 @@ function BookCard({
           <p className="text-sm font-mono">{isbn}</p>
         </div>
         <div className="grid grid-cols-2 gap-2">
-          <p className="text-muted-foreground font-medium text-sm">Genre</p>
-          <p className="text-sm">{genre}</p>
-        </div>
-        <div className="grid grid-cols-2 gap-2">
-          <p className="text-muted-foreground font-medium text-sm">Condition</p>
-          <p className="text-sm">{condition}</p>
+          <p className="text-muted-foreground font-medium text-sm">Genres</p>
+          <p className="text-sm">{genres.join(", ")}</p>
         </div>
         <div className="grid grid-cols-2 gap-2">
           <p className="text-muted-foreground font-medium text-sm">Status</p>
@@ -143,6 +139,10 @@ function BookCard({
         <div className="grid grid-cols-2 gap-2">
           <p className="text-muted-foreground font-medium text-sm">Donor</p>
           <p className="text-sm">{donor}</p>
+        </div>
+        <div className="grid grid-cols-2 gap-2">
+          <p className="text-muted-foreground font-medium text-sm">Language</p>
+          <p className="text-sm">{lang}</p>
         </div>
       </CardContent>
     </Card>
@@ -185,8 +185,10 @@ function BookDetailsDrawer() {
             </div>
 
             <div className="flex flex-col">
-              <p className="font-medium text-sm text-muted-foreground">Genre</p>
-              <p className="text-sm">Fiction</p>
+              <p className="font-medium text-sm text-muted-foreground">
+                Genres
+              </p>
+              <p className="text-sm">Politic, Dystopian, Social Science</p>
             </div>
 
             <div className="flex flex-col">
@@ -194,18 +196,6 @@ function BookDetailsDrawer() {
                 Language
               </p>
               <p className="text-sm">English</p>
-            </div>
-
-            <div className="flex flex-col">
-              <p className="font-medium text-sm text-muted-foreground">Tags</p>
-              <p className="text-sm">Politic, Dystopian, Social Science</p>
-            </div>
-
-            <div className="flex flex-col">
-              <p className="font-medium text-sm text-muted-foreground">
-                Condition
-              </p>
-              <p className="text-sm">Good</p>
             </div>
 
             <div className="flex flex-col">
@@ -223,7 +213,7 @@ function BookDetailsDrawer() {
 
           <Separator />
 
-          <Accordion type="single" collapsible>
+          <Accordion>
             <AccordionItem value="synopsis">
               <AccordionTrigger className="font-medium text-base">
                 Synopsis

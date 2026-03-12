@@ -1,5 +1,27 @@
 import { useAppForm } from "@/features/auth/model/form";
+import {
+  Combobox,
+  ComboboxChip,
+  ComboboxChips,
+  ComboboxChipsInput,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
+  ComboboxValue,
+  useComboboxAnchor,
+} from "@/shared/components/ui/combobox";
 import { Field, FieldGroup, FieldLabel } from "@/shared/components/ui/field";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/shared/components/ui/select";
 import { Textarea } from "@/shared/components/ui/textarea";
 import { formOptions } from "@tanstack/react-form";
 import { createFileRoute } from "@tanstack/react-router";
@@ -10,37 +32,45 @@ export const Route = createFileRoute("/_admin/admin/books/create-book/")({
 });
 
 type Book = {
-  id: string;
+  // id: string;
   title: string;
   author: string;
   isbn: string;
-  genre: string;
   lang: string;
-  tags: string[];
+  genres: string[];
   conditions: string[];
-  status: string;
+  // status: string;
   donor: string;
   synopsis: string;
 };
 
+const defaultValues: Book = {
+  title: "",
+  author: "",
+  isbn: "",
+  genres: [],
+  lang: "",
+  conditions: [],
+  donor: "",
+  synopsis: "",
+};
+
 const formOpts = formOptions({
-  defaultValues: {
-    title: "",
-    author: "",
-    isbn: "",
-    genre: "",
-    lang: "",
-    tags: "",
-    conditions: [],
-    donor: "",
-    synopsis: "",
-  },
+  defaultValues,
 });
 
 function RouteComponent() {
   const form = useAppForm({
     ...formOpts,
   });
+
+  const frameworks = [
+    "Next.js",
+    "SvelteKit",
+    "Nuxt.js",
+    "Remix",
+    "Astro",
+  ] as const;
 
   return (
     <main className="px-7 pt-7 xl:px-24 bg-white h-dvh">
@@ -58,6 +88,83 @@ function RouteComponent() {
           />
 
           <form.AppField
+            name="author"
+            children={(field) => <field.TextField label="Author" type="text" />}
+          />
+
+          <form.AppField
+            name="isbn"
+            children={(field) => <field.TextField label="ISBN" type="text" />}
+          />
+
+          <form.AppField
+            name="genres"
+            children={(field) => {
+              const items = [
+                {
+                  label: "Horror",
+                  value: "horror",
+                },
+                {
+                  label: "Comedy",
+                  value: "comedy",
+                },
+              ];
+
+              const anchor = useComboboxAnchor();
+
+              return (
+                <Field>
+                  <FieldLabel>Genres</FieldLabel>
+
+                  <Combobox multiple autoHighlight items={items}>
+                    <ComboboxChips ref={anchor}>
+                      <ComboboxValue>
+                        {(values) => (
+                          <>
+                            {values.map((value) => (
+                              <ComboboxChip key={value.value}>
+                                {value.label}
+                              </ComboboxChip>
+                            ))}
+                            <ComboboxChipsInput />
+                          </>
+                        )}
+                      </ComboboxValue>
+                    </ComboboxChips>
+
+                    <ComboboxContent anchor={anchor}>
+                      <ComboboxList>
+                        {(item) => (
+                          <ComboboxItem key={item.value} value={item}>
+                            {item.label}
+                          </ComboboxItem>
+                        )}
+                      </ComboboxList>
+                    </ComboboxContent>
+                  </Combobox>
+                </Field>
+              );
+            }}
+          />
+
+          <form.AppField
+            name="lang"
+            children={(field) => (
+              <field.TextField label="Language" type="text" />
+            )}
+          />
+
+          <form.AppField
+            name="conditions"
+            children={(field) => (
+              <Field>
+                <FieldLabel>Conditions</FieldLabel>
+              </Field>
+            )}
+          />
+
+          <form.AppField
             name="synopsis"
             children={(field) => (
               <Field>
@@ -68,11 +175,6 @@ function RouteComponent() {
                 />
               </Field>
             )}
-          />
-
-          <form.AppField
-            name="author"
-            children={(field) => <field.TextField label="Author" type="text" />}
           />
         </FieldGroup>
 
