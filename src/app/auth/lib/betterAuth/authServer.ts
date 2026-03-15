@@ -16,55 +16,55 @@ import { ac, adminRole, memberRole } from "./permission";
  */
 
 export const auth = betterAuth({
-	emailAndPassword: {
-		enabled: true,
-	},
+  emailAndPassword: {
+    enabled: true,
+  },
 
-	database: drizzleAdapter(db, {
-		provider: "sqlite",
-		schema: {
-			...schema,
-		},
-		debugLogs: false,
-	}),
-	baseURL:
-		process.env.CLOUDFLARE_ENV === "prod"
-			? env.VITE_BETTER_AUTH_BASE_URL
-			: process.env.VITE_BETTER_AUTH_BASE_URL,
-	plugins: [
-		phoneNumber({
-			sendOTP: async ({ phoneNumber, code }) => {
-				// note: hax, to auto verify
-				await auth.api.verifyPhoneNumber({
-					body: {
-						phoneNumber,
-						code,
-					},
-				});
-			},
-			verifyOTP: async ({ phoneNumber, code }) => {
-				return true;
-			},
-			signUpOnVerification: {
-				getTempEmail: (phoneNumber) => `${phoneNumber}@pass-the-story.com`,
-			},
-			sendPasswordResetOTP: async ({ phoneNumber, code }, ctx) => {
-				ctx?.setHeader("code", code);
-			},
-		}),
-		admin({
-			ac,
-			roles: {
-				admin: adminRole,
-				member: memberRole,
-			},
-			defaultRole: "member",
-		}),
-		tanstackStartCookies(),
-	],
-	user: {
-		deleteUser: {
-			enabled: true,
-		},
-	},
+  database: drizzleAdapter(db, {
+    provider: "sqlite",
+    schema: {
+      ...schema,
+    },
+    debugLogs: false,
+  }),
+  baseURL:
+    process.env.CLOUDFLARE_ENV === "prod"
+      ? env.VITE_BETTER_AUTH_BASE_URL
+      : process.env.VITE_BETTER_AUTH_BASE_URL,
+  plugins: [
+    phoneNumber({
+      sendOTP: async ({ phoneNumber, code }) => {
+        // note: hax, to auto verify
+        await auth.api.verifyPhoneNumber({
+          body: {
+            phoneNumber,
+            code,
+          },
+        });
+      },
+      verifyOTP: async () => {
+        return true;
+      },
+      signUpOnVerification: {
+        getTempEmail: (phoneNumber) => `${phoneNumber}@pass-the-story.com`,
+      },
+      sendPasswordResetOTP: async ({ code }, ctx) => {
+        ctx?.setHeader("code", code);
+      },
+    }),
+    admin({
+      ac,
+      roles: {
+        admin: adminRole,
+        member: memberRole,
+      },
+      defaultRole: "member",
+    }),
+    tanstackStartCookies(),
+  ],
+  user: {
+    deleteUser: {
+      enabled: true,
+    },
+  },
 });
