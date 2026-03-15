@@ -7,6 +7,22 @@ import { cloudflare } from "@cloudflare/vite-plugin";
 
 import type { Plugin } from "vite";
 
+const config = defineConfig({
+  plugins: [
+    devtools(),
+    cloudflare({
+      viteEnvironment: { name: "ssr" },
+    }),
+    tailwindcss(),
+    tanstackStart(),
+    viteReact(),
+    tanstackRouterHMR(),
+  ],
+  resolve: {
+    tsconfigPaths: true,
+  },
+});
+
 function tanstackRouterHMR(): Plugin {
   return {
     name: "tanstack-router-hmr",
@@ -24,21 +40,5 @@ function tanstackRouterHMR(): Plugin {
     },
   };
 }
-
-const config = defineConfig({
-  plugins: [
-    devtools(),
-    cloudflare({
-      viteEnvironment: { name: "ssr" },
-    }),
-    tailwindcss(),
-    tanstackStart(),
-    viteReact(),
-    tanstackRouterHMR(),
-  ],
-  resolve: {
-    tsconfigPaths: true,
-  },
-});
 
 export default config;

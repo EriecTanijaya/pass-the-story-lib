@@ -1,6 +1,5 @@
 import { formOptions } from "@tanstack/react-form";
 import { createFileRoute } from "@tanstack/react-router";
-import { useAppForm } from "@/features/auth/model/form";
 
 import {
   Combobox,
@@ -15,6 +14,7 @@ import {
 } from "@/shared/components/ui/combobox";
 import { Field, FieldGroup, FieldLabel } from "@/shared/components/ui/field";
 import { Textarea } from "@/shared/components/ui/textarea";
+import { useAppForm } from "@/shared/lib/tanstackForm/form";
 
 export const Route = createFileRoute("/_admin/admin/books/create-book/")({
   component: RouteComponent,
@@ -73,17 +73,23 @@ function RouteComponent() {
         <FieldGroup>
           <form.AppField
             name="title"
-            children={(field) => <field.TextField label="Title" type="text" />}
+            children={(field) => (
+              <field.FormTextInput label="Title" type="text" />
+            )}
           />
 
           <form.AppField
             name="author"
-            children={(field) => <field.TextField label="Author" type="text" />}
+            children={(field) => (
+              <field.FormTextInput label="Author" type="text" />
+            )}
           />
 
           <form.AppField
             name="isbn"
-            children={(field) => <field.TextField label="ISBN" type="text" />}
+            children={(field) => (
+              <field.FormTextInput label="ISBN" type="text" />
+            )}
           />
 
           <form.AppField
@@ -140,7 +146,7 @@ function RouteComponent() {
           <form.AppField
             name="lang"
             children={(field) => (
-              <field.TextField label="Language" type="text" />
+              <field.FormTextInput label="Language" type="text" />
             )}
           />
 
@@ -165,7 +171,7 @@ function RouteComponent() {
         </FieldGroup>
 
         <form.AppForm>
-          <form.SubscribeButton label="Add Book" />
+          <form.FormSubmitButton label="Add Book" />
         </form.AppForm>
       </form>
 

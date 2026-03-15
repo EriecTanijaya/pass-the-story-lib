@@ -1,0 +1,30 @@
+import { Button } from "@/shared/components/ui/button";
+import { Spinner } from "@/shared/components/ui/spinner";
+import { useFormContext } from "../formContext";
+
+export function FormSubmitButton({ label }: { label: string }) {
+  const form = useFormContext();
+
+  return (
+    <form.Subscribe selector={(state) => state.isSubmitting}>
+      {(isSubmitting) => {
+        return (
+          <Button type="submit" className="w-full mt-7" disabled={isSubmitting}>
+            {(() => {
+              if (isSubmitting) {
+                return (
+                  <>
+                    <Spinner />
+                    Loading...
+                  </>
+                );
+              }
+
+              return <>{label}</>;
+            })()}
+          </Button>
+        );
+      }}
+    </form.Subscribe>
+  );
+}

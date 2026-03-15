@@ -1,8 +1,10 @@
 import { Field, FieldLabel } from "@/shared/components/ui/field";
-import { useFieldContext } from "../../model/formContext";
 import { Input } from "@/shared/components/ui/input";
 import { Button } from "@/shared/components/ui/button";
 import { useState } from "react";
+import { useFieldContext } from "../formContext";
+
+//TODO: change to proper name
 
 export function DynamicList() {
   const field = useFieldContext<string[]>();
