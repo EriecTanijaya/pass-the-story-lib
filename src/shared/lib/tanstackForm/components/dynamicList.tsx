@@ -10,7 +10,11 @@ import {
   ItemGroup,
   ItemTitle,
 } from "@/shared/components/ui/item";
-import { PencilSimpleIcon, TrashIcon } from "@phosphor-icons/react";
+import {
+  FloppyDiskIcon,
+  PencilSimpleIcon,
+  TrashIcon,
+} from "@phosphor-icons/react";
 
 //TODO: change to proper name
 
@@ -71,13 +75,24 @@ function EditableItem({ propIndex, value }: EditableItemProps) {
         )}
       </ItemContent>
       <ItemActions>
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={() => setIsEdit(!isEdit)}
-        >
-          <PencilSimpleIcon />
-        </Button>
+        {isEdit ? (
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => setIsEdit(!isEdit)}
+          >
+            <FloppyDiskIcon />
+          </Button>
+        ) : (
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => setIsEdit(!isEdit)}
+          >
+            <PencilSimpleIcon />
+          </Button>
+        )}
+
         <Button
           variant="destructive"
           size="icon"
