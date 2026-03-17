@@ -65,10 +65,6 @@ function RouteComponent() {
     <main className="px-7 pt-7 xl:px-24 bg-white">
       <h2 className="font-bold text-xl mb-7">Add Book</h2>
 
-      {/**
-       todo: co locate the form to the shared component
-        */}
-
       <form>
         <FieldGroup>
           <form.AppField
@@ -174,8 +170,6 @@ function RouteComponent() {
           <form.FormSubmitButton label="Add Book" />
         </form.AppForm>
       </form>
-
-      {/*<div className="whitespace-pre-line">{text}</div>*/}
     </main>
   );
 }

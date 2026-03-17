@@ -9,7 +9,6 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as MemberRouteRouteImport } from './routes/_member/route'
 import { Route as AdminRouteRouteImport } from './routes/_admin/route'
 import { Route as AuthIndexRouteImport } from './routes/auth/index'
 import { Route as MemberIndexRouteImport } from './routes/_member/index'
@@ -23,10 +22,6 @@ import { Route as AdminAdminReservationsIndexRouteImport } from './routes/_admin
 import { Route as AdminAdminBooksIndexRouteImport } from './routes/_admin/admin/books/index'
 import { Route as AdminAdminBooksCreateBookIndexRouteImport } from './routes/_admin/admin/books/create-book/index'
 
-const MemberRouteRoute = MemberRouteRouteImport.update({
-  id: '/_member',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AdminRouteRoute = AdminRouteRouteImport.update({
   id: '/_admin',
   getParentRoute: () => rootRouteImport,
@@ -37,9 +32,9 @@ const AuthIndexRoute = AuthIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const MemberIndexRoute = MemberIndexRouteImport.update({
-  id: '/',
+  id: '/_member/',
   path: '/',
-  getParentRoute: () => MemberRouteRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AuthConfirmPasswordRoute = AuthConfirmPasswordRouteImport.update({
   id: '/auth/confirm-password',
@@ -47,14 +42,14 @@ const AuthConfirmPasswordRoute = AuthConfirmPasswordRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const MemberAboutRoute = MemberAboutRouteImport.update({
-  id: '/about',
+  id: '/_member/about',
   path: '/about',
-  getParentRoute: () => MemberRouteRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
 const MemberBooksIndexRoute = MemberBooksIndexRouteImport.update({
-  id: '/books/',
+  id: '/_member/books/',
   path: '/books/',
-  getParentRoute: () => MemberRouteRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AdminAdminIndexRoute = AdminAdminIndexRouteImport.update({
   id: '/admin/',
@@ -67,9 +62,9 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const MemberBooksBookIdRoute = MemberBooksBookIdRouteImport.update({
-  id: '/books/$bookId',
+  id: '/_member/books/$bookId',
   path: '/books/$bookId',
-  getParentRoute: () => MemberRouteRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AdminAdminReservationsIndexRoute =
   AdminAdminReservationsIndexRouteImport.update({
@@ -118,7 +113,6 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_admin': typeof AdminRouteRouteWithChildren
-  '/_member': typeof MemberRouteRouteWithChildren
   '/_member/about': typeof MemberAboutRoute
   '/auth/confirm-password': typeof AuthConfirmPasswordRoute
   '/_member/': typeof MemberIndexRoute
@@ -161,7 +155,6 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/_admin'
-    | '/_member'
     | '/_member/about'
     | '/auth/confirm-password'
     | '/_member/'
@@ -177,21 +170,17 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   AdminRouteRoute: typeof AdminRouteRouteWithChildren
-  MemberRouteRoute: typeof MemberRouteRouteWithChildren
+  MemberAboutRoute: typeof MemberAboutRoute
   AuthConfirmPasswordRoute: typeof AuthConfirmPasswordRoute
+  MemberIndexRoute: typeof MemberIndexRoute
   AuthIndexRoute: typeof AuthIndexRoute
+  MemberBooksBookIdRoute: typeof MemberBooksBookIdRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
+  MemberBooksIndexRoute: typeof MemberBooksIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/_member': {
-      id: '/_member'
-      path: ''
-      fullPath: '/'
-      preLoaderRoute: typeof MemberRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/_admin': {
       id: '/_admin'
       path: ''
@@ -211,7 +200,7 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof MemberIndexRouteImport
-      parentRoute: typeof MemberRouteRoute
+      parentRoute: typeof rootRouteImport
     }
     '/auth/confirm-password': {
       id: '/auth/confirm-password'
@@ -225,14 +214,14 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof MemberAboutRouteImport
-      parentRoute: typeof MemberRouteRoute
+      parentRoute: typeof rootRouteImport
     }
     '/_member/books/': {
       id: '/_member/books/'
       path: '/books'
       fullPath: '/books/'
       preLoaderRoute: typeof MemberBooksIndexRouteImport
-      parentRoute: typeof MemberRouteRoute
+      parentRoute: typeof rootRouteImport
     }
     '/_admin/admin/': {
       id: '/_admin/admin/'
@@ -253,7 +242,7 @@ declare module '@tanstack/react-router' {
       path: '/books/$bookId'
       fullPath: '/books/$bookId'
       preLoaderRoute: typeof MemberBooksBookIdRouteImport
-      parentRoute: typeof MemberRouteRoute
+      parentRoute: typeof rootRouteImport
     }
     '/_admin/admin/reservations/': {
       id: '/_admin/admin/reservations/'
@@ -297,30 +286,15 @@ const AdminRouteRouteWithChildren = AdminRouteRoute._addFileChildren(
   AdminRouteRouteChildren,
 )
 
-interface MemberRouteRouteChildren {
-  MemberAboutRoute: typeof MemberAboutRoute
-  MemberIndexRoute: typeof MemberIndexRoute
-  MemberBooksBookIdRoute: typeof MemberBooksBookIdRoute
-  MemberBooksIndexRoute: typeof MemberBooksIndexRoute
-}
-
-const MemberRouteRouteChildren: MemberRouteRouteChildren = {
-  MemberAboutRoute: MemberAboutRoute,
-  MemberIndexRoute: MemberIndexRoute,
-  MemberBooksBookIdRoute: MemberBooksBookIdRoute,
-  MemberBooksIndexRoute: MemberBooksIndexRoute,
-}
-
-const MemberRouteRouteWithChildren = MemberRouteRoute._addFileChildren(
-  MemberRouteRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   AdminRouteRoute: AdminRouteRouteWithChildren,
-  MemberRouteRoute: MemberRouteRouteWithChildren,
+  MemberAboutRoute: MemberAboutRoute,
   AuthConfirmPasswordRoute: AuthConfirmPasswordRoute,
+  MemberIndexRoute: MemberIndexRoute,
   AuthIndexRoute: AuthIndexRoute,
+  MemberBooksBookIdRoute: MemberBooksBookIdRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
+  MemberBooksIndexRoute: MemberBooksIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start:dev": "vite dev --port 3000 --mode dev",
+    "start:dev": "vite dev --port 3000 --mode dev --host",
     "build": "vite build",
     "preview": "bun run build && vite preview",
     "test": "vitest run",
