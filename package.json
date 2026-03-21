@@ -8,7 +8,7 @@
     "preview": "bun run build && vp preview",
     "test": "vp test run",
     "lint": "vp check --fix",
-    "deploy": "bun run build --mode prod && wrangler secret bulk .env.prod && wrangler deploy",
+    "deploy": "vp run build --mode prod && wrangler secret bulk .env.prod && wrangler deploy",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "cf:typegen": "wrangler types",
