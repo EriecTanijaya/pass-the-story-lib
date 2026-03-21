@@ -56,14 +56,10 @@ export function SignInForm() {
         <form.AppField
           name="phoneNumber"
           validators={{
-            onSubmit: ({ value }) =>
-              !value ? "Phone Number is required" : null,
-            onChange: ({ value }) =>
-              !value ? "Phone Number is required" : null,
+            onSubmit: ({ value }) => (!value ? "Phone Number is required" : null),
+            onChange: ({ value }) => (!value ? "Phone Number is required" : null),
           }}
-          children={(field) => (
-            <field.FormTextInput label="Phone Number" type="text" />
-          )}
+          children={(field) => <field.FormTextInput label="Phone Number" type="text" />}
         />
         <form.AppField
           name="password"
@@ -71,9 +67,7 @@ export function SignInForm() {
             onSubmit: ({ value }) => (!value ? "Password is required" : null),
             onChange: ({ value }) => (!value ? "Password is required" : null),
           }}
-          children={(field) => (
-            <field.FormTextInput label="Password" type="curr-password" />
-          )}
+          children={(field) => <field.FormTextInput label="Password" type="curr-password" />}
         />
       </FieldGroup>
       <form.AppForm>

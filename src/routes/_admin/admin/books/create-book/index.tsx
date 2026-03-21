@@ -53,14 +53,6 @@ function RouteComponent() {
     ...formOpts,
   });
 
-  const _frameworks = [
-    "Next.js",
-    "SvelteKit",
-    "Nuxt.js",
-    "Remix",
-    "Astro",
-  ] as const;
-
   return (
     <main className="px-7 pt-7 xl:px-24 bg-white">
       <h2 className="font-bold text-xl mb-7">Add Book</h2>
@@ -69,23 +61,17 @@ function RouteComponent() {
         <FieldGroup>
           <form.AppField
             name="title"
-            children={(field) => (
-              <field.FormTextInput label="Title" type="text" />
-            )}
+            children={(field) => <field.FormTextInput label="Title" type="text" />}
           />
 
           <form.AppField
             name="author"
-            children={(field) => (
-              <field.FormTextInput label="Author" type="text" />
-            )}
+            children={(field) => <field.FormTextInput label="Author" type="text" />}
           />
 
           <form.AppField
             name="isbn"
-            children={(field) => (
-              <field.FormTextInput label="ISBN" type="text" />
-            )}
+            children={(field) => <field.FormTextInput label="ISBN" type="text" />}
           />
 
           <form.AppField
@@ -113,10 +99,8 @@ function RouteComponent() {
                       <ComboboxValue>
                         {(values) => (
                           <>
-                            {values.map((value) => (
-                              <ComboboxChip key={value.value}>
-                                {value.label}
-                              </ComboboxChip>
+                            {values.map((value: { value: string; label: string }) => (
+                              <ComboboxChip key={value.value}>{value.label}</ComboboxChip>
                             ))}
                             <ComboboxChipsInput />
                           </>
@@ -141,9 +125,7 @@ function RouteComponent() {
 
           <form.AppField
             name="lang"
-            children={(field) => (
-              <field.FormTextInput label="Language" type="text" />
-            )}
+            children={(field) => <field.FormTextInput label="Language" type="text" />}
           />
 
           <form.AppField

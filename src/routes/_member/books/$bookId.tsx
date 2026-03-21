@@ -1,155 +1,137 @@
 import {
-	BarcodeIcon,
-	BookOpenIcon,
-	CalendarBlankIcon,
-	ClockIcon,
-	MapPinIcon,
-	TagIcon,
-	TranslateIcon,
-	UserIcon,
+  BarcodeIcon,
+  BookOpenIcon,
+  CalendarBlankIcon,
+  ClockIcon,
+  MapPinIcon,
+  TagIcon,
+  TranslateIcon,
+  UserIcon,
 } from "@phosphor-icons/react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
-	Accordion,
-	AccordionContent,
-	AccordionItem,
-	AccordionTrigger,
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
 } from "@/shared/components/ui/accordion";
 import { Badge } from "@/shared/components/ui/badge";
 import { Button } from "@/shared/components/ui/button";
-import {
-	Card,
-	CardContent,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from "@/shared/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/shared/components/ui/card";
 import { Separator } from "@/shared/components/ui/separator";
 
 export const Route = createFileRoute("/_member/books/$bookId")({
-	component: RouteComponent,
+  component: RouteComponent,
 });
 
 function RouteComponent() {
-	return (
-		<main className="flex flex-col pt-7 px-7 pb-12 gap-5 bg-white xl:px-24 xl:flex-row">
-			<div className="relative basis-1/2">
-				{/*<img src="/landscape.jpg" alt="book" className="h-96 object-cover" />*/}
-				<div className="h-96 bg-book-card-thumbnail rounded-xl flex justify-center items-center xl:h-full">
-					<BookOpenIcon className="size-24 fill-primary" />
-				</div>
-				<Badge
-					variant="secondary"
-					className="absolute top-4 right-4 w-20 h-7 bg-white/80"
-				>
-					Available
-				</Badge>
-			</div>
+  return (
+    <main className="flex flex-col pt-7 px-7 pb-12 gap-5 bg-white xl:px-24 xl:flex-row">
+      <div className="relative basis-1/2">
+        {/*<img src="/landscape.jpg" alt="book" className="h-96 object-cover" />*/}
+        <div className="h-96 bg-book-card-thumbnail rounded-xl flex justify-center items-center xl:h-full">
+          <BookOpenIcon className="size-24 fill-primary" />
+        </div>
+        <Badge variant="secondary" className="absolute top-4 right-4 w-20 h-7 bg-white/80">
+          Available
+        </Badge>
+      </div>
 
-			<section className="flex gap-5 flex-col basis-1/2">
-				<div className="flex flex-col gap-2">
-					<h2 className="font-bold text-2xl">Dark Island</h2>
-					<div className="flex gap-1 items-center text-xl text-muted-foreground">
-						<UserIcon className="size-6" />
-						Roxi
-					</div>
-				</div>
+      <section className="flex gap-5 flex-col basis-1/2">
+        <div className="flex flex-col gap-2">
+          <h2 className="font-bold text-2xl">Dark Island</h2>
+          <div className="flex gap-1 items-center text-xl text-muted-foreground">
+            <UserIcon className="size-6" />
+            Roxi
+          </div>
+        </div>
 
-				<Separator />
+        <Separator />
 
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-					<div className="flex items-center gap-3 bg-card rounded-lg p-4 border shadow-sm">
-						<TagIcon weight="bold" className="fill-primary size-6" />
-						<div className="flex flex-col">
-							<h3 className="text-muted-foreground">Genre</h3>
-							<p className="font-semibold">Mystery</p>
-						</div>
-					</div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="flex items-center gap-3 bg-card rounded-lg p-4 border shadow-sm">
+            <TagIcon weight="bold" className="fill-primary size-6" />
+            <div className="flex flex-col">
+              <h3 className="text-muted-foreground">Genre</h3>
+              <p className="font-semibold">Mystery</p>
+            </div>
+          </div>
 
-					<div className="flex items-center gap-3 bg-card rounded-lg p-4 border shadow-sm">
-						<TranslateIcon weight="bold" className="fill-primary size-6" />
-						<div className="flex flex-col">
-							<h3 className="text-muted-foreground">Language</h3>
-							<p className="font-semibold">English</p>
-						</div>
-					</div>
+          <div className="flex items-center gap-3 bg-card rounded-lg p-4 border shadow-sm">
+            <TranslateIcon weight="bold" className="fill-primary size-6" />
+            <div className="flex flex-col">
+              <h3 className="text-muted-foreground">Language</h3>
+              <p className="font-semibold">English</p>
+            </div>
+          </div>
 
-					<div className="flex items-center gap-3 bg-card rounded-lg p-4 border shadow-sm">
-						<BarcodeIcon weight="bold" className="fill-primary size-6" />
-						<div className="flex flex-col">
-							<h3 className="text-muted-foreground">ISBN</h3>
-							<p className="font-mono">123123123123</p>
-						</div>
-					</div>
-				</div>
+          <div className="flex items-center gap-3 bg-card rounded-lg p-4 border shadow-sm">
+            <BarcodeIcon weight="bold" className="fill-primary size-6" />
+            <div className="flex flex-col">
+              <h3 className="text-muted-foreground">ISBN</h3>
+              <p className="font-mono">123123123123</p>
+            </div>
+          </div>
+        </div>
 
-				<div className="flex flex-col gap-2">
-					<h3 className="text-muted-foreground">Tags</h3>
-					<div className="flex gap-1">
-						<Badge variant="secondary">Adventure</Badge>
-						<Badge variant="secondary">Mystery</Badge>
-					</div>
-				</div>
+        <div className="flex flex-col gap-2">
+          <h3 className="text-muted-foreground">Tags</h3>
+          <div className="flex gap-1">
+            <Badge variant="secondary">Adventure</Badge>
+            <Badge variant="secondary">Mystery</Badge>
+          </div>
+        </div>
 
-				<Separator />
+        <Separator />
 
-				<Accordion type="single" collapsible>
-					<AccordionItem value="synopsis">
-						<AccordionTrigger className="font-bold text-lg">
-							Synopsis
-						</AccordionTrigger>
-						<AccordionContent>
-							Venture into the hamowing world of George Orwell dystopian
-							masterpίcus, "1994." Set is the oppressive superstans of Corana,
-							thịt chilling nowed introduum readers to Winston Smith, a min
-							sruggling to maintain his humanity in a susiety zaled by the ever
-							watchtul Big Brother. At Winston becomes increasingly
-							disillusioned with the Party's brutal contrats every aspect of
-							life, he finds solace in a secret love atfair with the enigmatic
-							Julia, putting both of them in the cronheits of an unforgiving
-							regime 1966 aplies themes of totalitarianists, censorshup, and the
-							power of language, offering a stark warning against the danger of
-							abulum authority and the crusion of individual freedom. Wahus
-							prophene maghen and haunting mion of a world where the muth it
-							mangulated and dusent is crushed, Orwell's powerful narrative
-							chillling reminder of the fragility of freedom and the for
-							vigilance in the face of tyranny. Prepare to be challenged.
-							fimurived, and ultimame moved by the thought provoking clam that
-							continues to resonate with readers acrow generations.
-						</AccordionContent>
-					</AccordionItem>
-				</Accordion>
+        <Accordion>
+          <AccordionItem value="synopsis">
+            <AccordionTrigger className="font-bold text-lg">Synopsis</AccordionTrigger>
+            <AccordionContent>
+              Venture into the hamowing world of George Orwell dystopian masterpίcus, "1994." Set is
+              the oppressive superstans of Corana, thịt chilling nowed introduum readers to Winston
+              Smith, a min sruggling to maintain his humanity in a susiety zaled by the ever
+              watchtul Big Brother. At Winston becomes increasingly disillusioned with the Party's
+              brutal contrats every aspect of life, he finds solace in a secret love atfair with the
+              enigmatic Julia, putting both of them in the cronheits of an unforgiving regime 1966
+              aplies themes of totalitarianists, censorshup, and the power of language, offering a
+              stark warning against the danger of abulum authority and the crusion of individual
+              freedom. Wahus prophene maghen and haunting mion of a world where the muth it
+              mangulated and dusent is crushed, Orwell's powerful narrative chillling reminder of
+              the fragility of freedom and the for vigilance in the face of tyranny. Prepare to be
+              challenged. fimurived, and ultimame moved by the thought provoking clam that continues
+              to resonate with readers acrow generations.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
 
-				<Separator />
+        <Separator />
 
-				<Card className="bg-white">
-					<CardHeader>
-						<CardTitle className="font-bold">Next Meetup</CardTitle>
-					</CardHeader>
+        <Card className="bg-white">
+          <CardHeader>
+            <CardTitle className="font-bold">Next Meetup</CardTitle>
+          </CardHeader>
 
-					<CardContent className="flex flex-col gap-3">
-						<div className="flex gap-2 items-center">
-							<CalendarBlankIcon
-								className="fill-primary size-5"
-								weight="bold"
-							/>
-							<p className="text-sm">Thursday, 25 December 2025</p>
-						</div>
-						<div className="flex gap-2 items-center">
-							<ClockIcon className="fill-primary size-5" weight="bold" />
-							<p className="text-sm">16:00</p>
-						</div>
-						<div className="flex gap-2 items-center">
-							<MapPinIcon className="fill-primary size-5" weight="bold" />
-							<p className="text-sm">Singapore</p>
-						</div>
-					</CardContent>
+          <CardContent className="flex flex-col gap-3">
+            <div className="flex gap-2 items-center">
+              <CalendarBlankIcon className="fill-primary size-5" weight="bold" />
+              <p className="text-sm">Thursday, 25 December 2025</p>
+            </div>
+            <div className="flex gap-2 items-center">
+              <ClockIcon className="fill-primary size-5" weight="bold" />
+              <p className="text-sm">16:00</p>
+            </div>
+            <div className="flex gap-2 items-center">
+              <MapPinIcon className="fill-primary size-5" weight="bold" />
+              <p className="text-sm">Singapore</p>
+            </div>
+          </CardContent>
 
-					<CardFooter>
-						<Button>Reserve</Button>
-					</CardFooter>
-				</Card>
-			</section>
-		</main>
-	);
+          <CardFooter>
+            <Button>Reserve</Button>
+          </CardFooter>
+        </Card>
+      </section>
+    </main>
+  );
 }

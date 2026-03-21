@@ -3,17 +3,17 @@ import { ReservationDataTable } from "@/features/reservation/ui/desktop/reservat
 import { ReservationCardList } from "@/features/reservation/ui/mobile/reservationCardList";
 
 export const Route = createFileRoute("/_admin/admin/reservations/")({
-	component: RouteComponent,
+  component: RouteComponent,
 });
 
 function RouteComponent() {
-	return (
-		<main className="px-7 pt-7 xl:px-24 bg-white h-dvh">
-			<h2 className="font-bold text-xl mb-7">Reservations & Borrowing</h2>
+  return (
+    <main className="px-7 pt-7 xl:px-24 bg-white h-dvh">
+      <h2 className="font-bold text-xl mb-7">Reservations & Borrowing</h2>
 
-			<ReservationCardList />
+      <ReservationCardList />
 
-			<ReservationDataTable />
-		</main>
-	);
+      <ReservationDataTable />
+    </main>
+  );
 }

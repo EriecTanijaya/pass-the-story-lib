@@ -3,17 +3,8 @@ import { formOptions } from "@tanstack/react-form";
 import { createFileRoute, redirect, useRouter } from "@tanstack/react-router";
 import { useState } from "react";
 import { authClient } from "@/app/auth/lib/betterAuth/authClient";
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@/shared/components/ui/alert";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/shared/components/ui/card";
+import { Alert, AlertDescription, AlertTitle } from "@/shared/components/ui/alert";
+import { Card, CardContent, CardHeader, CardTitle } from "@/shared/components/ui/card";
 import { FieldGroup } from "@/shared/components/ui/field";
 import { useAppForm, withFieldGroup } from "@/shared/lib/tanstackForm/form";
 
@@ -60,9 +51,7 @@ const FieldGroupPassword = withFieldGroup({
           validators={{
             onSubmit: ({ value }) => (!value ? "Password is required" : null),
           }}
-          children={(field) => (
-            <field.FormTextInput label="Password" type="new-password" />
-          )}
+          children={(field) => <field.FormTextInput label="Password" type="new-password" />}
         />
 
         <group.AppField
@@ -77,9 +66,7 @@ const FieldGroupPassword = withFieldGroup({
               return undefined;
             },
           }}
-          children={(field) => (
-            <field.FormTextInput label="Confirm Password" type="new-password" />
-          )}
+          children={(field) => <field.FormTextInput label="Confirm Password" type="new-password" />}
         />
       </>
     );
@@ -143,11 +130,7 @@ function RouteComponent() {
               <WarningIcon />
               <div className="flex justify-between">
                 <AlertTitle>Error</AlertTitle>
-                <button
-                  type="button"
-                  className="cursor-pointer"
-                  onClick={() => setError("")}
-                >
+                <button type="button" className="cursor-pointer" onClick={() => setError("")}>
                   <XIcon className="size-5" />
                 </button>
               </div>

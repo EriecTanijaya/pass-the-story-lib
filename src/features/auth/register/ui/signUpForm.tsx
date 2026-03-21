@@ -82,14 +82,10 @@ export function SignUpForm() {
         <form.AppField
           name="phoneNumber"
           validators={{
-            onSubmit: ({ value }) =>
-              !value ? "Phone Number is required" : null,
-            onChange: ({ value }) =>
-              !value ? "Phone Number is required" : null,
+            onSubmit: ({ value }) => (!value ? "Phone Number is required" : null),
+            onChange: ({ value }) => (!value ? "Phone Number is required" : null),
           }}
-          children={(field) => (
-            <field.FormTextInput label="Phone Number" type="text" />
-          )}
+          children={(field) => <field.FormTextInput label="Phone Number" type="text" />}
         />
       </FieldGroup>
       <form.AppForm>

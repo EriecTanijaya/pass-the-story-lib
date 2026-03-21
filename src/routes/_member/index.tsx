@@ -65,8 +65,7 @@ const books = [
 const howToSteps: Omit<HowToCardProps, "stepNum">[] = [
   {
     title: "Browse & Reserve",
-    details:
-      "Find a book you love and reserve it up to 2 days before the meetup.",
+    details: "Find a book you love and reserve it up to 2 days before the meetup.",
     StepIcon: MagnifyingGlassIcon,
   },
   {
@@ -82,8 +81,7 @@ const howToSteps: Omit<HowToCardProps, "stepNum">[] = [
   },
   {
     title: "Read & Return",
-    details:
-      "Enjoy your book and return it at the next meetup. Earn karma points!",
+    details: "Enjoy your book and return it at the next meetup. Earn karma points!",
     StepIcon: BookOpenIcon,
   },
 ];
@@ -204,10 +202,7 @@ function App() {
               <BellIcon className="size-5 fill-primary" />
               <h3 className="text-muted-foreground text-sm">
                 Reservation deadline:
-                <span className="font-semibold text-foreground">
-                  {" "}
-                  19 December 2025
-                </span>
+                <span className="font-semibold text-foreground"> 19 December 2025</span>
               </h3>
             </div>
           </CardContent>
@@ -232,9 +227,7 @@ interface HowToCardProps {
 function HowToCard({ details, StepIcon, title, stepNum }: HowToCardProps) {
   return (
     <Card className="relative overflow-visible">
-      <Badge className="absolute -top-3 -left-3 size-8 text-sm font-bold">
-        {stepNum}
-      </Badge>
+      <Badge className="absolute -top-3 -left-3 size-8 text-sm font-bold">{stepNum}</Badge>
       <CardHeader>
         <div className="size-14 flex items-center justify-center bg-secondary rounded-xl mb-4">
           <StepIcon className="size-7 fill-primary" />

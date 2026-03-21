@@ -57,9 +57,7 @@ export function FormTextInput({ label, type }: TextFieldProps) {
         )}
       </div>
 
-      {errors.length > 0 && (
-        <FieldError errors={errors.map((err) => ({ message: err }))} />
-      )}
+      {errors.length > 0 && <FieldError errors={errors.map((err) => ({ message: err }))} />}
     </Field>
   );
 }

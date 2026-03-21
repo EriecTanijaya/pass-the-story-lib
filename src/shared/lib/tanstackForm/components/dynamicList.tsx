@@ -3,18 +3,8 @@ import { Input } from "@/shared/components/ui/input";
 import { Button } from "@/shared/components/ui/button";
 import { useState } from "react";
 import { useFieldContext } from "../formContext";
-import {
-  Item,
-  ItemActions,
-  ItemContent,
-  ItemGroup,
-  ItemTitle,
-} from "@/shared/components/ui/item";
-import {
-  FloppyDiskIcon,
-  PencilSimpleIcon,
-  TrashIcon,
-} from "@phosphor-icons/react";
+import { Item, ItemActions, ItemContent, ItemGroup, ItemTitle } from "@/shared/components/ui/item";
+import { FloppyDiskIcon, PencilSimpleIcon, TrashIcon } from "@phosphor-icons/react";
 
 //TODO: change to proper name
 
@@ -35,11 +25,7 @@ export function DynamicList() {
       )}
 
       <Field orientation="horizontal">
-        <Input
-          type="text"
-          value={condition}
-          onChange={(e) => setCondition(e.target.value)}
-        />
+        <Input type="text" value={condition} onChange={(e) => setCondition(e.target.value)} />
         <Button
           onClick={() => {
             field.pushValue(condition);
@@ -66,38 +52,23 @@ function EditableItem({ propIndex, value }: EditableItemProps) {
     <Item>
       <ItemContent>
         {isEdit ? (
-          <Input
-            value={value}
-            onChange={(e) => field.replaceValue(propIndex, e.target.value)}
-          />
+          <Input value={value} onChange={(e) => field.replaceValue(propIndex, e.target.value)} />
         ) : (
           <ItemTitle>{value}</ItemTitle>
         )}
       </ItemContent>
       <ItemActions>
         {isEdit ? (
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => setIsEdit(!isEdit)}
-          >
+          <Button variant="outline" size="icon" onClick={() => setIsEdit(!isEdit)}>
             <FloppyDiskIcon />
           </Button>
         ) : (
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => setIsEdit(!isEdit)}
-          >
+          <Button variant="outline" size="icon" onClick={() => setIsEdit(!isEdit)}>
             <PencilSimpleIcon />
           </Button>
         )}
 
-        <Button
-          variant="destructive"
-          size="icon"
-          onClick={() => field.removeValue(propIndex)}
-        >
+        <Button variant="destructive" size="icon" onClick={() => field.removeValue(propIndex)}>
           <TrashIcon />
         </Button>
       </ItemActions>

@@ -26,9 +26,7 @@ function RouteComponent() {
               <CardTitle>Pending Reservations</CardTitle>
               <div className="flex gap-2 items-baseline">
                 <p className="font-bold text-xl">0</p>
-                <p className="text-muted-foreground text-sm">
-                  Awaiting Confirmation
-                </p>
+                <p className="text-muted-foreground text-sm">Awaiting Confirmation</p>
               </div>
             </CardContent>
           </Card>
