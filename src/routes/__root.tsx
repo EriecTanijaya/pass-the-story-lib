@@ -140,6 +140,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 function RootDocument({ children }: { children: React.ReactNode }) {
   const { user } = Route.useRouteContext();
 
+  console.log("hi!");
+
   const matchRoute = useMatchRoute();
 
   const matchedAuthRoute = matchRoute({ to: "/auth", fuzzy: true });
