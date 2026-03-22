@@ -4,11 +4,11 @@
   "type": "module",
   "scripts": {
     "start:dev": "vp dev --port 3000 --mode dev --host",
-    "build": "vp build",
+    "build": "vp build --mode prod",
     "preview": "bun run build && vp preview",
     "test": "vp test run",
     "lint": "vp check --fix",
-    "deploy": "vp run build --mode prod && wrangler secret bulk .env.prod && wrangler deploy",
+    "deploy": "wrangler secret bulk .env.prod && wrangler deploy",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "cf:typegen": "wrangler types",
