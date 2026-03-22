@@ -16,16 +16,16 @@ jobs:
         with:
           cache: true
 
+      - run: vp run build
+
+      # - run: vp run test
+
       - uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
-      - run: vp run build
-
-      # - run: vp run test
-
-      - run: vp run deploy
+      # - run: vp run deploy
 
   # deploy:
   #   runs-on: ubuntu-latest
