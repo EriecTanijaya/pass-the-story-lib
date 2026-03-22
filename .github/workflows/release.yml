@@ -27,12 +27,3 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACC_ID }}
-
-      # - run: vp run deploy
-
-  # deploy:
-  #   runs-on: ubuntu-latest
-  #   name: Deploy
-  #   steps:
-  #     - uses: cloudflare/wrangler-action@v3
-  #       with:
