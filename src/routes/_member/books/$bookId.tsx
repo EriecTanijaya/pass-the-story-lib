@@ -24,6 +24,9 @@ export const Route = createFileRoute("/_member/books/$bookId")({
   component: RouteComponent,
 });
 
+//TODO: make it not boring
+// https://www.spottedinprod.com/apps/pocketshelf/813
+
 function RouteComponent() {
   return (
     <main className="flex flex-col pt-7 px-7 pb-12 gap-5 bg-white xl:px-24 xl:flex-row">
